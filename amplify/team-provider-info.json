@@ -1,0 +1,15 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-webmd-web-app-develop-123943-authRole",
+            "UnauthRoleArn": "arn:aws:iam::630770542372:role/amplify-webmd-web-app-develop-123943-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::630770542372:role/amplify-webmd-web-app-develop-123943-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-webmd-web-app-develop-123943-deployment",
+            "UnauthRoleName": "amplify-webmd-web-app-develop-123943-unauthRole",
+            "StackName": "amplify-webmd-web-app-develop-123943",
+            "StackId": "arn:aws:cloudformation:us-east-1:630770542372:stack/amplify-webmd-web-app-develop-123943/07a8c180-1f7b-11ea-960b-0e6f11df9e98",
+            "AmplifyAppId": "d23cdmuu947xk4"
+        }
+    }
+}
