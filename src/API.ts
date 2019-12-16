@@ -4,7 +4,7 @@
 export type CreateEmployeeMutationVariables = {
   firstName?: string | null;
   lastName?: string | null;
-  phoneNumber?: number | null;
+  phoneNumber?: string | null;
   city?: string | null;
   state?: string | null;
   country?: string | null;
@@ -18,7 +18,7 @@ export type CreateEmployeeMutation = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;
@@ -30,7 +30,7 @@ export type CreateEmployeeMutation = {
 export type UpdateEmployeeMutationVariables = {
   firstName?: string | null;
   lastName?: string | null;
-  phoneNumber?: number | null;
+  phoneNumber?: string | null;
   city?: string | null;
   state?: string | null;
   country?: string | null;
@@ -44,7 +44,7 @@ export type UpdateEmployeeMutation = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;
@@ -71,7 +71,7 @@ export type GetEmployeeQuery = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;
@@ -86,7 +86,7 @@ export type AllEmployeesQuery = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;
@@ -101,7 +101,7 @@ export type NewEmployeeSubscription = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;
@@ -116,7 +116,7 @@ export type UpdatedEmployeeSubscription = {
     id: string;
     firstName: string | null;
     lastName: string | null;
-    phoneNumber: number | null;
+    phoneNumber: string | null;
     city: string | null;
     state: string | null;
     country: string | null;

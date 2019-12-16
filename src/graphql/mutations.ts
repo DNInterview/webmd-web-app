@@ -4,7 +4,7 @@
 export const createEmployee = `mutation CreateEmployee(
   $firstName: String
   $lastName: String
-  $phoneNumber: Int
+  $phoneNumber: String
   $city: String
   $state: String
   $country: String
@@ -36,7 +36,7 @@ export const createEmployee = `mutation CreateEmployee(
 export const updateEmployee = `mutation UpdateEmployee(
   $firstName: String
   $lastName: String
-  $phoneNumber: Int
+  $phoneNumber: String
   $city: String
   $state: String
   $country: String

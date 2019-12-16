@@ -43,11 +43,12 @@ const subquery = gql(newEmployee);
 const test = async () => {
   await client.hydrated();
   const observable = client.subscribe({ query: subquery });
+  debugger;
   observable.subscribe({
-    next: function(data: any) {
+    next: (data: any) => {
       console.log("realtime data: ", data);
     },
-    complete: console.log,
+    completion: console.log,
     error: console.error
   });
 };
