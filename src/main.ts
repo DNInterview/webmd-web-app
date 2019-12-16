@@ -8,10 +8,12 @@ import AWS from "aws-sdk";
 import gql from "graphql-tag";
 import { AUTH_TYPE } from "aws-appsync/lib";
 import { AuthOptions } from "aws-appsync-auth-link/lib/auth-link";
+import store from "./store";
 
 Vue.config.productionTip = false;
 
 new Vue({
+  store,
   render: h => h(App)
 }).$mount("#app");
 
