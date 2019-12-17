@@ -5,6 +5,7 @@ import Employee from "@/modules/employees/models/Employee/Employee";
 import { AllEmployeesQuery } from "@/API";
 import gql from "graphql-tag";
 import { allEmployees } from "@/graphql/queries";
+import "@/modules/core/models/ReflectFields.js";
 describe("EmployeeService", () => {
   let employeeService: EmployeeService;
   let mockAppSyncClient: AWSAppSyncClient<NormalizedCacheObject>;

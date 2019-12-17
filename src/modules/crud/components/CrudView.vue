@@ -6,11 +6,11 @@
           <!--          <th v-for="col in columns">{{ col }}</th>-->
         </tr>
       </thead>
-      <tbody>
-        <!--        <tr v-for="row in rows">-->
-        <!--          <td v-for="col in columns">{{ row[col] }}</td>-->
-        <!--        </tr>-->
-      </tbody>
+      <!--      <tbody v-if="{{list}}">-->
+      <!--                <tr v-for="row in {{ list! }}">-->
+      <!--                  <td v-for="col in columns">{{ row[col] }}</td>-->
+      <!--                </tr>-->
+      <!--      </tbody>-->
     </table>
   </div>
 </template>
@@ -18,11 +18,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
+import ICrudView from "@/modules/crud/components/ICrudView";
 
 @Component
-export default class CrudView<T extends IDatabaseEntity> extends Vue {
-  private list?: T[];
-  get columns(): string[] {
+export default class CrudView<T extends IDatabaseEntity> extends Vue
+  implements ICrudView<T> {
+  list?: T[];
+  public get columns(): string[] {
     return [];
   }
 }

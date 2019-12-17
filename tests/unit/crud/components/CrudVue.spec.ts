@@ -1,5 +1,6 @@
 import CrudView from "@/modules/crud/components/CrudView.vue";
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import Employee from "@/modules/employees/models/Employee/Employee";
+import ICrudView from "@/modules/crud/components/ICrudView";
 
 describe("CrudVue", () => {
   let crudView: CrudView;
@@ -8,10 +9,22 @@ describe("CrudVue", () => {
   });
   describe("columns", () => {
     // Arrange
-    class ExtendedCrudView extends CrudView<IEmployee> {}
-    const expectedColumns = [];
+    class ExtendedCrudView extends CrudView<Employee> {}
+    crudView = new ExtendedCrudView();
+    const expectedColumns = [
+      "id",
+      "firstName",
+      "lastName",
+      "phoneNumber",
+      "city",
+      "state",
+      "country",
+      "hireDate",
+      "employmentEndDate"
+    ];
     // Act
-    const actualColumns = crudView.columns;
+    const actualColumns = ((crudView as unknown) as ICrudView<Employee>)
+      .columns;
 
     // Assert
     expect(actualColumns).toEqual(expectedColumns);
