@@ -10,6 +10,7 @@
     <employee-form
       v-if="showCreateFormModal"
       @close="showCreateFormModal = false"
+      :form-model="formModel"
     >
     </employee-form>
     <employee-list :entity-columns="entityColumns" :entity-list="entityList" />
@@ -35,7 +36,6 @@ export default class EmployeeViewModel extends CrudViewModel<
   EmployeeStoreState
 > {
   public mounted() {
-    debugger;
     super.mounted();
   }
 }

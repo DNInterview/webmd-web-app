@@ -4,7 +4,7 @@ import { Store } from "vuex";
 import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
 import { ICrudStoreState } from "@/modules/crud/stores/ICrudStoreState";
-import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
+import IEntityOptions from "@/modules/crud/options/IEntityOptions";
 
 export default abstract class CrudViewModel<
   Entity extends IDatabaseEntity,
@@ -12,10 +12,13 @@ export default abstract class CrudViewModel<
 > extends Vue implements ICrudViewModel<Entity> {
   showCreateFormModal = false;
   showUpdateFormModal = false;
-  formModel: ICreateEntityOptions<Entity> = {} as ICreateEntityOptions<Entity>;
   get crudStore(): Store<StoreState> {
     return this.$store as Store<StoreState>;
   }
+  get formModel(): IEntityOptions<Entity> {
+    return this.crudStore.state.createFormModel;
+  }
+
   get entityList(): Entity[] {
     return this.crudStore.state.entityList;
   }

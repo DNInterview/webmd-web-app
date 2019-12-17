@@ -1,5 +1,5 @@
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
-import { ReflectFields } from "@/modules/core/models/ReflectFields";
+import IEntityOptions from "@/modules/crud/options/IEntityOptions";
 
 export default interface ICreateEntityOptions<T extends IDatabaseEntity>
-  extends ReflectFields {}
+  extends IEntityOptions<T> {}

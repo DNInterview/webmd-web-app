@@ -7,11 +7,11 @@
             <div class="modal-container">
               <div
                 class="modal-entity-form__field-input"
-                v-for="field in formModal.fields"
+                v-for="field in formModel.fields"
                 :key="field"
               >
                 <label>{{ field }}</label>
-                <input v-model="formModel" />
+                <input :placeholder="field" />
               </div>
               <div class="modal-footer">
                 <slot name="footer">
@@ -33,22 +33,14 @@
 </template>
 
 <script lang="ts">
-export default class EmployeeForm {}
+export default {
+  props: ["formModel"]
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
-  font-size: larger;
-}
-h3 {
-  margin: 40px 0 0;
-}
-table {
-  align-content: center;
-  margin: 40px 10px 10px 40px;
-}
-td {
-  border: 1px solid black;
+.modal-entity-form__field-input {
+  align-self: inherit;
 }
 </style>

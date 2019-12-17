@@ -6,6 +6,7 @@ import { Store } from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import CrudViewModel from "@/modules/crud/components/CrudViewModel";
+import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 
 describe("CrudViewModel", () => {
   class TestCrudViewModel extends CrudViewModel<
@@ -17,18 +18,18 @@ describe("CrudViewModel", () => {
       super.mounted();
     }
   }
-  const employeeView = new TestCrudViewModel();
+  const testCrudViewModel = new TestCrudViewModel();
   describe("mounted", () => {
     it("calls getList", () => {
       // Arrange
-      employeeView.$store = {} as Store<EmployeeStoreState>;
-      employeeView.$store.dispatch = jest.fn();
+      testCrudViewModel.$store = {} as Store<EmployeeStoreState>;
+      testCrudViewModel.$store.dispatch = jest.fn();
 
       // Act
-      ((employeeView as unknown) as ICrudViewModel<Employee>).mounted();
+      ((testCrudViewModel as unknown) as ICrudViewModel<Employee>).mounted();
 
       // Assert
-      expect(employeeView.$store.dispatch).toHaveBeenCalledWith(
+      expect(testCrudViewModel.$store.dispatch).toHaveBeenCalledWith(
         CRUD_ACTION_GET_LIST
       );
     });
@@ -37,7 +38,7 @@ describe("CrudViewModel", () => {
     describe("list contains elements ", () => {
       it("return a list of the fields", () => {
         // Arrange
-        employeeView.$store = {
+        testCrudViewModel.$store = {
           state: {
             entityList: [
               new Employee(
@@ -66,7 +67,7 @@ describe("CrudViewModel", () => {
           "employmentEndDate"
         ];
         // Act
-        const actualColumns = ((employeeView as unknown) as IEmployeeView)
+        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeView)
           .entityColumns;
 
         // Assert
@@ -77,19 +78,32 @@ describe("CrudViewModel", () => {
       it("returns empty array", () => {
         // Arrange
         const list: IEmployeeEntity[] = [];
-        employeeView.$store = {
+        testCrudViewModel.$store = {
           state: {
             entityList: list
           }
         } as Store<EmployeeStoreState>;
         const expectedColumns: string[] = [];
         // Act
-        const actualColumns = ((employeeView as unknown) as IEmployeeView)
+        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeView)
           .entityColumns;
 
         // Assert
         expect(actualColumns).toEqual(expectedColumns);
       });
+    });
+  });
+  describe("formModel", () => {
+    it("returns the createOptionsState", () => {
+      // Arrange
+      const expectedFormModel = new CreateEmployeeOptions();
+      testCrudViewModel.crudStore.state.createFormModel = expectedFormModel;
+
+      // Act
+      const actualFormModel = testCrudViewModel.formModel;
+
+      // Assert
+      expect(actualFormModel).toEqual(expectedFormModel);
     });
   });
 });
