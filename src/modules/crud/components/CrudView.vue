@@ -17,9 +17,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
 
 @Component
-export default class CrudView extends Vue {}
+export default class CrudView<T extends IDatabaseEntity> extends Vue {
+  private list?: T[];
+  get columns(): string[] {
+    return [];
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
