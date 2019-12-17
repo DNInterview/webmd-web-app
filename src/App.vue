@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <EmployeeCrud />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import CrudView from "./modules/crud/components/CrudView.vue";
 
 @Component({
   components: {
-    HelloWorld: CrudView
+    EmployeeCrud: CrudView
   }
 })
 export default class App extends Vue {}

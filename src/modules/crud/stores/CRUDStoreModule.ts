@@ -12,7 +12,7 @@ export default abstract class CRUDStoreModule<Entity extends IDatabaseEntity> {
     private service: ICRUDService<Entity>,
     readonly state: ICRUDStoreState<Entity>
   ) {}
-  getActions(): {} {
+  get actions(): {} {
     const service = this.service;
     return {
       async [CRUD_ACTION_GET_LIST](store: Store<ICRUDStoreState<Entity>>) {

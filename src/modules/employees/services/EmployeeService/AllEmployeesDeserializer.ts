@@ -6,14 +6,13 @@ import EmployeeDeserializer from "@/modules/employees/models/Employee/EmployeeDe
 export default class AllEmployeesDeserializer
   implements ISerializable<IEmployee[]> {
   deserialize(input: AllEmployeesQuery): IEmployee[] {
-    const employees: IEmployee[] = [];
-    for (let serializedEmployee in input.allEmployees) {
-      employees.push(
-        new EmployeeDeserializer().deserialize(
-          JSON.parse(serializedEmployee, x => (x === undefined ? null : x))
+    const allEmployees = input.allEmployees;
+    return allEmployees
+      ? allEmployees!.map(serialized =>
+          new EmployeeDeserializer().deserialize(
+            (serialized as unknown) as IEmployee
+          )
         )
-      );
-    }
-    return employees;
+      : [];
   }
 }

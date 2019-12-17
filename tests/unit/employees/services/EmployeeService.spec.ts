@@ -1,10 +1,10 @@
 import EmployeeService from "@/modules/employees/services/EmployeeService/EmployeeService";
-import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 import AWSAppSyncClient from "aws-appsync/lib";
 import { NormalizedCacheObject } from "apollo-cache-inmemory";
 import Employee from "@/modules/employees/models/Employee/Employee";
-import { newEmployee } from "@/graphql/subscriptions";
 import { AllEmployeesQuery } from "@/API";
+import gql from "graphql-tag";
+import { allEmployees } from "@/graphql/queries";
 describe("EmployeeService", () => {
   let employeeService: EmployeeService;
   let mockAppSyncClient: AWSAppSyncClient<NormalizedCacheObject>;
@@ -18,6 +18,8 @@ describe("EmployeeService", () => {
 
       const expectedId1 = "id1";
       const expectedId2 = "id2";
+      const expectedQuery = { query: gql(allEmployees) };
+
       const expectedResponse: AllEmployeesQuery = {
         allEmployees: [
           {
@@ -82,7 +84,8 @@ describe("EmployeeService", () => {
 
       // Assert
       expect(mockAppSyncClient.hydrated).toHaveBeenCalled();
-      expect(actualEmployees).toContainEqual(expectedEmployees);
+      expect(mockAppSyncClient.query).toHaveBeenCalledWith(expectedQuery);
+      expect(actualEmployees).toEqual(expectedEmployees);
     });
   });
 });
