@@ -1,15 +1,15 @@
 <template>
   <div class="employee-view">
     <h1>Employees</h1>
-    <table v-if="list" class="crud-view__entity-list">
+    <table class="employee-view__entity-list">
       <thead>
         <tr>
-          <th v-for="col in columns" :key="col">{{ col }}</th>
+          <th v-for="col in columns" v-bind:key="col">{{ col }}</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="row in list" :key="row">
-          <td v-for="col in columns" :key="col">{{ row[col] }}</td>
+        <tr v-for="(row, key) in list" v-bind:key="key">
+          <td v-for="(col, key) in columns" v-bind:key="key">{{ row[col] }}</td>
         </tr>
       </tbody>
     </table>

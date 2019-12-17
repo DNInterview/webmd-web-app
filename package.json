@@ -6,9 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e:local": "NODE_ENV=local vue-cli-service test:e2e",
+    "test:e2e:staging": "NODE_ENV=staging vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "lint:fix": "vue-cli-service lint --fix",
     "deploy:patch": "npm version patch && git push --follow-tags",
     "deploy:minor": "npm version minor && git push --follow-tags",
     "deploy:major": "npm version major && git push --follow-tags"

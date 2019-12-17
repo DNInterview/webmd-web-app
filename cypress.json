@@ -4,7 +4,7 @@
     "local": {
       "baseUrl": "http://localhost:8080/"
     },
-    "develop": {
+    "staging": {
       "baseUrl": ""
     }
   }

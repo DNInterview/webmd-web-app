@@ -1,24 +1,30 @@
-import Employee from "../../../../src/modules/employees/models/Employee/Employee";
-
 describe("EmployeeView", () => {
-  it("Displays Employee View", () => {
-    // Arrange
-    const tableColumns = new Employee(
-      "asdf",
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ).fields;
+  describe("/", () => {
+    describe("on load", () => {
+      it("Displays Employee View", () => {
+        // Arrange
+        const tableSelector = "employee-view__entity-list";
+        const tableColumns = [
+          "id",
+          "firstName",
+          "lastName",
+          "phoneNumber",
+          "city",
+          "state",
+          "country",
+          "hireDate",
+          "employmentEndDate"
+        ];
+        cy.visit(Cypress.env("local").baseUrl);
 
-    // Act
-    cy.visit("/");
+        // Act
+        cy.visit("/");
 
-    // Assert
-    cy.get("thead");
+        // Assert
+        tableColumns.forEach(columnName => {
+          cy.get(tableSelector).contains(columnName);
+        });
+      });
+    });
   });
 });

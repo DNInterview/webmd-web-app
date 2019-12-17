@@ -1,9 +1,15 @@
 # webmd-web-app
 
+http://webmd-web-app-20191216181919-hostingbucket-develop.s3-website-us-east-1.amazonaws.com/
+
+
 ## Project setup
 ```
 npm install
 ```
+
+## Run locally
+The project requires AWS credentials to run locally, which can be provided on request.  
 
 ### Compiles and hot-reloads for development
 ```
@@ -16,6 +22,7 @@ npm run build
 ```
 
 ### Run your unit tests
+
 ```
 npm run test:unit
 ```
