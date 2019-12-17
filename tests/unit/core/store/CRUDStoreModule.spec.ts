@@ -22,7 +22,7 @@ describe("CRUDStoreModule", () => {
     crudStoreModule = new EmployeeStoreModule(mockService, stubState);
     Vue.use(Vuex);
     vuexStore = new Store({
-      actions: crudStoreModule.getActions(),
+      actions: crudStoreModule.actions,
       mutations: crudStoreModule.mutations
     });
   });

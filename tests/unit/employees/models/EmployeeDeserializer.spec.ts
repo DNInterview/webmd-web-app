@@ -19,7 +19,8 @@ describe("EmployeeDeserializer", () => {
           lastName: "some lastName",
           phoneNumber: "some phoneNumber",
           city: "some city",
-          country: "some country"
+          country: "some country",
+          fields: []
         };
 
         // Act
@@ -52,7 +53,8 @@ describe("EmployeeDeserializer", () => {
           lastName: null,
           phoneNumber: null,
           city: null,
-          country: null
+          country: null,
+          fields: []
         };
         // Act
         const actualEmployee = deserializer.deserialize(expectedJson);

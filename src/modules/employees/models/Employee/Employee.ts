@@ -1,6 +1,5 @@
 import IEmployee from "@/modules/employees/models/Employee/IEmployee";
 import { Field, ReflectFields } from "@/modules/core/models/ReflectFields";
-import "reflect-metadata";
 
 export default class Employee extends ReflectFields implements IEmployee {
   readonly _typename: string = "Employee";
