@@ -28,7 +28,6 @@ export default class EmployeeView extends CrudView<
   EmployeeStoreState
 > {
   public mounted() {
-    debugger;
     super.mounted();
   }
 }

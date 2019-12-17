@@ -10,14 +10,12 @@ export default abstract class CrudView<
   StoreState extends ICRUDStoreState<Entity>
 > extends Vue implements ICrudView<IDatabaseEntity> {
   public mounted() {
-    debugger;
     this.crudStore.dispatch(CRUD_ACTION_GET_LIST);
   }
   get crudStore(): Store<StoreState> {
     return this.$store as Store<StoreState>;
   }
   get list(): Entity[] {
-    debugger;
     return this.crudStore.state.list;
   }
   public get columns(): string[] {
