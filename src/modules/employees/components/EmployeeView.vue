@@ -2,12 +2,12 @@
   <div class="employee-view">
     <h1>Employees</h1>
     <table class="employee-view__entity-list">
-      <thead>
+      <thead class="employee-view__list-header">
         <tr>
           <th v-for="col in columns" v-bind:key="col">{{ col }}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="employee-view__list-body">
         <tr v-for="(row, key) in list" v-bind:key="key">
           <td v-for="(col, key) in columns" v-bind:key="key">{{ row[col] }}</td>
         </tr>

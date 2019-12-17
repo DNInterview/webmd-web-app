@@ -3,7 +3,9 @@ describe("EmployeeView", () => {
     describe("on load", () => {
       it("Displays Employee View", () => {
         // Arrange
-        const tableSelector = "employee-view__entity-list";
+        const tableRowElement = "tr";
+        const tableSelector = ".employee-view__entity-list";
+        const tableBodySelector = ".employee-view__list-body";
         const tableColumns = [
           "id",
           "firstName",
@@ -15,15 +17,18 @@ describe("EmployeeView", () => {
           "hireDate",
           "employmentEndDate"
         ];
-        cy.visit(Cypress.env("local").baseUrl);
 
         // Act
-        cy.visit("/");
+        cy.visit(Cypress.env("local").baseUrl);
 
         // Assert
         tableColumns.forEach(columnName => {
           cy.get(tableSelector).contains(columnName);
         });
+        cy.get(tableSelector)
+          .get(tableBodySelector)
+          .find(tableRowElement)
+          .should("have.length.greaterThan", 0);
       });
     });
   });
