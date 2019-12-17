@@ -30,5 +30,21 @@ npm run test:e2e
 npm run lint
 ```
 
+
+### Deployment
+#### Patch
+```
+npm run deploy:patch
+```
+#### Minor
+```
+npm run deploy:minor
+```
+#### Major
+```
+npm run deploy:major
+```
+Monitor CI builds [here](https://circleci.com/gh/DNInterview/webmd-web-app)
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

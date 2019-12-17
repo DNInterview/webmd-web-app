@@ -30,7 +30,8 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-      - run: sudo npm install -g @aws-amplify/cli
+      - run: sudo - npm install -g @aws-amplify/cli@1.6.8
+      - run: amplify init --amplify "{\"envName\":\"develop\"}" --yes
       - run: amplify publish
   test_staging:
     docker:
