@@ -7,11 +7,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import EmployeeView from "./modules/employees/components/EmployeeView.vue";
+import EmployeeViewModel from "./modules/employees/components/EmployeeView.vue";
 
 @Component({
   components: {
-    EmployeeView: EmployeeView
+    EmployeeView: EmployeeViewModel
   }
 })
 export default class App extends Vue {}

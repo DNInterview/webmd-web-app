@@ -7,25 +7,36 @@
             v-for="key in formModal.fields"
             v-bind:key="key"
             placeholder="{{key}}"
-            class="modal__form-input"
+            class="modal-entity-form__form-input"
           />
           <slot name="header">
             default header
           </slot>
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" @click="$emit('close')">
+                Create
+              </button>
+              <button class="modal-default-button" @click="$emit('close')">
+                Cancel
+              </button>
+            </slot>
+          </div>
         </div>
       </div>
     </div>
   </transition>
 </template>
 
-<script lang="ts">
+<script lang="ts" id="modal-entity-form">
 import { Component } from "vue-property-decorator";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import CrudView from "@/modules/crud/components/CrudView";
+import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 
 @Component
-export default class EmployeeView extends CrudView<
+export default class EmployeeView extends CrudViewModel<
   IEmployeeEntity,
   EmployeeStoreState
 > {

@@ -31,24 +31,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import CrudViewModel from "@/modules/crud/components/CrudViewModel";
-import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-Vue.component("modal-entity-form", {
-  template: ".modal-entity-form"
-});
+import { Vue } from "vue-property-decorator";
 
-@Component
-export default class EmployeeViewModel extends CrudViewModel<
-  IEmployeeEntity,
-  EmployeeStoreState
-> {
-  public mounted() {
-    debugger;
-    super.mounted();
-  }
-}
+Vue.component("modal-entity-form", {
+  template: "#modal-entity-form"
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,11 +6,12 @@ import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
 import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
 import IEntityOptions from "@/modules/crud/options/IEntityOptions";
 
-export default abstract class CrudView<
+export default abstract class CrudViewModel<
   Entity extends IDatabaseEntity,
   StoreState extends ICRUDStoreState<Entity>
 > extends Vue implements ICrudView<IDatabaseEntity> {
-  showFormModal = false;
+  showCreateFormModal = false;
+  showUpdateFormModal = false;
   formModel: IEntityOptions<IDatabaseEntity> = {} as IEntityOptions<
     IDatabaseEntity
   >;

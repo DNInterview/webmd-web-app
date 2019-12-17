@@ -1,4 +1,3 @@
-import EmployeeView from "@/modules/employees/components/EmployeeView.vue";
 import Employee from "@/modules/employees/models/Employee/Employee";
 import IEmployeeView from "@/modules/employees/components/IEmployeeView";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
@@ -6,12 +5,19 @@ import ICrudView from "@/modules/crud/components/ICrudView";
 import { Store } from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
+import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 
-describe("EmployeeView", () => {
-  let employeeView: EmployeeView;
-  beforeEach(() => {
-    employeeView = new EmployeeView();
-  });
+describe("CrudViewModel", () => {
+  class TestCrudViewModel extends CrudViewModel<
+    IEmployeeEntity,
+    EmployeeStoreState
+  > {
+    public mounted() {
+      debugger;
+      super.mounted();
+    }
+  }
+  const employeeView = new TestCrudViewModel();
   describe("mounted", () => {
     it("calls getList", () => {
       // Arrange
