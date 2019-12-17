@@ -1,6 +1,17 @@
 <template>
   <ModalEntityForm>
-    <div class="modal-entity-form">
+    <button
+      class="entity-view__create-button"
+      @click="showCreateFormModal = true"
+    >
+      Create
+    </button>
+
+    <div
+      class="modal-entity-form"
+      v-if="showCreateFormModal"
+      @close="showCreateFormModal = false"
+    >
       <transition name="modal">
         <div class="modal-mask">
           <div class="modal-wrapper">
@@ -15,7 +26,6 @@
               </div>
               <div class="modal-footer">
                 <slot name="footer">
-                  default footer
                   <button class="modal-default-button" @click="$emit('close')">
                     Create
                   </button>
@@ -34,7 +44,10 @@
 
 <script lang="ts">
 export default {
-  props: ["formModel"]
+  props: ["formModel"],
+  data() {
+    return {};
+  }
 };
 </script>
 

@@ -1,18 +1,7 @@
 <template>
   <div class="entity-view">
     <h1>Employees</h1>
-    <button
-      class="entity-view__create-button"
-      @click="showCreateFormModal = true"
-    >
-      Show Modal
-    </button>
-    <employee-form
-      v-if="showCreateFormModal"
-      @close="showCreateFormModal = false"
-      :form-model="formModel"
-    >
-    </employee-form>
+    <employee-form :form-model="formModel"> </employee-form>
     <employee-list :entity-columns="entityColumns" :entity-list="entityList" />
   </div>
 </template>
