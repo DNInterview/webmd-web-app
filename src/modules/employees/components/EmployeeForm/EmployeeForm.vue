@@ -33,13 +33,7 @@
 </template>
 
 <script lang="ts">
-import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
-
-const formModel = new CreateEmployeeOptions();
-export default {
-  name: "ModalEntityForm",
-  props: ["formModel"]
-};
+export default class EmployeeForm {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

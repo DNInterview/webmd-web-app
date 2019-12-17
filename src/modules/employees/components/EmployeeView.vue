@@ -1,8 +1,8 @@
 <template>
-  <div class="employee-view">
+  <div class="entity-view">
     <h1>Employees</h1>
     <button
-      class="employee-view__create-button"
+      class="entity-view__create-button"
       @click="showCreateFormModal = true"
     >
       Show Modal

@@ -9,12 +9,10 @@ import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 export default abstract class CrudViewModel<
   Entity extends IDatabaseEntity,
   StoreState extends ICrudStoreState<Entity>
-> extends Vue implements ICrudViewModel<IDatabaseEntity> {
+> extends Vue implements ICrudViewModel<Entity> {
   showCreateFormModal = false;
   showUpdateFormModal = false;
-  formModel: ICreateEntityOptions<IDatabaseEntity> = {} as ICreateEntityOptions<
-    IDatabaseEntity
-  >;
+  formModel: ICreateEntityOptions<Entity> = {} as ICreateEntityOptions<Entity>;
   get crudStore(): Store<StoreState> {
     return this.$store as Store<StoreState>;
   }
