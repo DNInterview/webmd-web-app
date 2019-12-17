@@ -1,0 +1,55 @@
+type Employee {
+	id: ID!
+	firstName: String
+	lastName: String
+	phoneNumber: String
+	city: String
+	state: String
+	country: String
+	hireDate: AWSDate
+	endDate: AWSDate
+}
+
+type Mutation {
+	createEmployee(
+		firstName: String,
+		lastName: String,
+		phoneNumber: String,
+		city: String,
+		state: String,
+		country: String,
+		hireDate: AWSDate,
+		endDate: AWSDate
+	): Employee!
+	updateEmployee(
+		firstName: String,
+		lastName: String,
+		phoneNumber: String,
+		city: String,
+		state: String,
+		country: String,
+		hireDate: AWSDate,
+		endDate: AWSDate
+	): Employee!
+	deleteEmployee(id: ID!): Boolean
+}
+
+type Query {
+	getEmployee(id: ID!): Employee
+	allEmployees: [Employee]
+}
+
+type Subscription {
+	newEmployee: Employee
+		@aws_subscribe(mutations: ["createEmployee"])
+	updatedEmployee: Employee
+		@aws_subscribe(mutations: ["updateEmployee"])
+	removedEmployee: Boolean
+		@aws_subscribe(mutations: ["deleteEmployee"])
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

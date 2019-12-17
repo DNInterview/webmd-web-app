@@ -21,7 +21,6 @@ import { Component } from "vue-property-decorator";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import CrudView from "@/modules/crud/components/CrudView";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
 
 @Component
 export default class EmployeeView extends CrudView<
