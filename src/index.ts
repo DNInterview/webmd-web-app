@@ -5,6 +5,7 @@ import AWS from "aws-sdk";
 import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
 import EmployeeService from "@/modules/employees/services/EmployeeService/EmployeeService";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
+import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 
 Vue.use(Vuex);
 
@@ -14,7 +15,8 @@ const credentials = new AWS.Credentials({
 });
 const awsService = new AWSService(credentials);
 const employeeService = new EmployeeService(awsService.appSyncClient);
-const employeeState = new EmployeeStoreState([]);
+const employeeFormModel = new CreateEmployeeOptions();
+const employeeState = new EmployeeStoreState([], employeeFormModel);
 const employeeStore = new EmployeeStoreModule(employeeService);
 
 export default new Vuex.Store({

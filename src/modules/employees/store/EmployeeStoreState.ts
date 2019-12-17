@@ -1,11 +1,11 @@
-import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
+import { ICrudStoreState } from "@/modules/crud/stores/ICrudStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 
 export default class EmployeeStoreState
-  implements ICRUDStoreState<IEmployeeEntity> {
+  implements ICrudStoreState<IEmployeeEntity> {
   constructor(
     readonly entityList: IEmployeeEntity[],
-    readonly createFormModel: CreateEmployeeOptions
+    readonly createFormModel: ICreateEntityOptions<IEmployeeEntity>
   ) {}
 }

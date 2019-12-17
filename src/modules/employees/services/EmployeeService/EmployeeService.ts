@@ -1,4 +1,4 @@
-import ICRUDService from "../../../crud/services/ICRUDService";
+import ICrudService from "../../../crud/services/ICrudService";
 import IEmployeeEntity from "../../models/Employee/IEmployeeEntity";
 import AWSAppSyncClient from "aws-appsync/lib";
 import { NormalizedCacheObject } from "apollo-cache-inmemory/lib/types";
@@ -9,7 +9,7 @@ import gql from "graphql-tag";
 import { AllEmployeesQuery } from "@/API";
 import AllEmployeesDeserializer from "@/modules/employees/services/EmployeeService/AllEmployeesDeserializer";
 
-export default class EmployeeService implements ICRUDService<IEmployeeEntity> {
+export default class EmployeeService implements ICrudService<IEmployeeEntity> {
   constructor(private client: AWSAppSyncClient<NormalizedCacheObject>) {}
   async create(options: CreateEmployeeOptions): Promise<IEmployeeEntity> {
     throw new Error("not yet implemented");

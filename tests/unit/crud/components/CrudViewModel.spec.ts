@@ -1,6 +1,6 @@
 import Employee from "@/modules/employees/models/Employee/Employee";
 import IEmployeeView from "@/modules/employees/components/IEmployeeView";
-import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
+import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CrudStoreModule.constants";
 import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 import { Store } from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";

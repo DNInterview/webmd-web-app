@@ -1,17 +1,17 @@
 import {
   CRUD_ACTION_GET_LIST,
   CRUD_MUTATION_STORE_LIST
-} from "@/modules/crud/stores/CRUDStoreModule.constants";
+} from "@/modules/crud/stores/CrudStoreModule.constants";
 import EmployeeStoreModule from "@/modules/employees/store/EmployeeStoreModule";
 import EmployeeService from "@/modules/employees/services/EmployeeService/EmployeeService";
-import CRUDStoreModule from "@/modules/crud/stores/CRUDStoreModule";
+import CrudStoreModule from "@/modules/crud/stores/CrudStoreModule";
 import { Store } from "vuex";
 import Employee from "@/modules/employees/models/Employee/Employee";
 import Vue from "vue";
 import Vuex from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 
-describe("CRUDStoreModule", () => {
+describe("CrudStoreModule", () => {
   let mockService: EmployeeService;
   let stubState: EmployeeStoreState;
   let crudStoreModule: EmployeeStoreModule;
