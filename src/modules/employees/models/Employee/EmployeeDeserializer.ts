@@ -1,9 +1,10 @@
 import ISerializable from "@/modules/core/models/interfaces/ISerializable";
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import Employee from "@/modules/employees/models/Employee/Employee";
 
-export default class EmployeeDeserializer implements ISerializable<IEmployee> {
-  deserialize(input: IEmployee): IEmployee {
+export default class EmployeeDeserializer
+  implements ISerializable<IEmployeeEntity> {
+  deserialize(input: IEmployeeEntity): IEmployeeEntity {
     return new Employee(
       input.id,
       input.firstName,

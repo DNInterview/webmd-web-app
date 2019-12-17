@@ -2,36 +2,52 @@ import EmployeeView from "@/modules/employees/components/EmployeeView.vue";
 import Employee from "@/modules/employees/models/Employee/Employee";
 import IEmployeeView from "@/modules/employees/components/IEmployeeView";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
+import ICrudView from "@/modules/crud/components/ICrudView";
+import { Store } from "vuex";
+import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 
-describe("CrudVue", () => {
-  let crudView: EmployeeView;
+describe("EmployeeView", () => {
+  let employeeView: EmployeeView;
   beforeEach(() => {
-    crudView = new EmployeeView();
+    employeeView = new EmployeeView();
   });
   describe("mounted", () => {
     it("calls getList", () => {
       // Arrange
-      crudView.$store.dispatch = jest.fn();
+      employeeView.$store = {} as Store<EmployeeStoreState>;
+      employeeView.$store.dispatch = jest.fn();
 
       // Act
-      crudView.mounted();
+      ((employeeView as unknown) as ICrudView<Employee>).mounted();
 
       // Assert
-      expect(crudView.$store.dispatch).toHaveBeenCalledWith(
+      expect(employeeView.$store.dispatch).toHaveBeenCalledWith(
         CRUD_ACTION_GET_LIST
       );
     });
   });
   describe("columns", () => {
-    describe("list exists ", () => {
-      it("lists fields", () => {
+    describe("list contains elements ", () => {
+      it("return a list of the fields", () => {
         // Arrange
-        class ExtendedCrudView extends EmployeeView<Employee> {
-          list = [
-            new Employee("id", null, null, null, null, null, null, null, null)
-          ];
-        }
-        crudView = new ExtendedCrudView();
+        employeeView.$store = {
+          state: {
+            list: [
+              new Employee(
+                "some id",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+              )
+            ]
+          }
+        } as Store<EmployeeStoreState>;
         const expectedColumns = [
           "id",
           "firstName",
@@ -44,7 +60,7 @@ describe("CrudVue", () => {
           "employmentEndDate"
         ];
         // Act
-        const actualColumns = ((crudView as unknown) as IEmployeeView<Employee>)
+        const actualColumns = ((employeeView as unknown) as IEmployeeView)
           .columns;
 
         // Assert
@@ -52,42 +68,17 @@ describe("CrudVue", () => {
       });
     });
     describe("list has no elements", () => {
-      it("lists fields", () => {
+      it("returns empty array", () => {
         // Arrange
-        class ExtendedCrudView extends EmployeeView<Employee> {
-          list = [
-            new Employee("id", null, null, null, null, null, null, null, null)
-          ];
-        }
-        crudView = new ExtendedCrudView();
-        const expectedColumns = [
-          "id",
-          "firstName",
-          "lastName",
-          "phoneNumber",
-          "city",
-          "state",
-          "country",
-          "hireDate",
-          "employmentEndDate"
-        ];
-        // Act
-        const actualColumns = ((crudView as unknown) as IEmployeeView<Employee>)
-          .columns;
-
-        // Assert
-        expect(actualColumns).toEqual(expectedColumns);
-      });
-    });
-    describe("list does not exists", () => {
-      it("lists fields", () => {
-        // Arrange
-        class ExtendedCrudView extends EmployeeView<Employee> {}
-        crudView = new ExtendedCrudView();
+        const list: IEmployeeEntity[] = [];
+        employeeView.$store = {
+          state: {
+            list
+          }
+        } as Store<EmployeeStoreState>;
         const expectedColumns: string[] = [];
-
         // Act
-        const actualColumns = ((crudView as unknown) as IEmployeeView<Employee>)
+        const actualColumns = ((employeeView as unknown) as IEmployeeView)
           .columns;
 
         // Assert

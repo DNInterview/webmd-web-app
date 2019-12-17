@@ -1,6 +1,7 @@
 import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 
-export default class EmployeeStoreState implements ICRUDStoreState<IEmployee> {
-  list?: [IEmployee];
+export default class EmployeeStoreState
+  implements ICRUDStoreState<IEmployeeEntity> {
+  constructor(readonly list: IEmployeeEntity[]) {}
 }

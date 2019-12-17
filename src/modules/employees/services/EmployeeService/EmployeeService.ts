@@ -1,5 +1,5 @@
 import ICRUDService from "../../../crud/services/ICRUDService";
-import IEmployee from "../../models/Employee/IEmployee";
+import IEmployeeEntity from "../../models/Employee/IEmployeeEntity";
 import AWSAppSyncClient from "aws-appsync/lib";
 import { NormalizedCacheObject } from "apollo-cache-inmemory/lib/types";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
@@ -9,22 +9,22 @@ import gql from "graphql-tag";
 import { AllEmployeesQuery } from "@/API";
 import AllEmployeesDeserializer from "@/modules/employees/services/EmployeeService/AllEmployeesDeserializer";
 
-export default class EmployeeService implements ICRUDService<IEmployee> {
+export default class EmployeeService implements ICRUDService<IEmployeeEntity> {
   constructor(private client: AWSAppSyncClient<NormalizedCacheObject>) {}
-  async create(options: CreateEmployeeOptions): Promise<IEmployee> {
+  async create(options: CreateEmployeeOptions): Promise<IEmployeeEntity> {
     throw new Error("not yet implemented");
   }
-  read(id: string): Promise<IEmployee> {
+  read(id: string): Promise<IEmployeeEntity> {
     throw new Error("not yet implemented");
   }
-  async list(): Promise<IEmployee[]> {
+  async list(): Promise<IEmployeeEntity[]> {
     await this.client.hydrated();
     const result = await this.client.query<AllEmployeesQuery>({
       query: gql(allEmployees)
     });
     return new AllEmployeesDeserializer().deserialize(result.data);
   }
-  update(id: string, options: UpdateEmployeeOptions): Promise<IEmployee> {
+  update(id: string, options: UpdateEmployeeOptions): Promise<IEmployeeEntity> {
     throw new Error("not yet implemented");
   }
   delete(id: string): Promise<boolean> {

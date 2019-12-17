@@ -1,7 +1,7 @@
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import { Field, ReflectFields } from "@/modules/core/models/ReflectFields";
 
-export default class Employee extends ReflectFields implements IEmployee {
+export default class Employee extends ReflectFields implements IEmployeeEntity {
   readonly _typename: string = "Employee";
   @Field()
   readonly id: string;

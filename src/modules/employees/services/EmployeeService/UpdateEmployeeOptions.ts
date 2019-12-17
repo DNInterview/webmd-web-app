@@ -1,5 +1,5 @@
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import IUpdateEntityOptions from "@/modules/crud/options/IUpdateEntityOptions";
 
 export default class UpdateEmployeeOptions
-  implements IUpdateEntityOptions<IEmployee> {}
+  implements IUpdateEntityOptions<IEmployeeEntity> {}

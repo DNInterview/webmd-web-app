@@ -8,17 +8,12 @@ import {
 import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
 
 export default abstract class CRUDStoreModule<Entity extends IDatabaseEntity> {
-  constructor(
-    private service: ICRUDService<Entity>,
-    readonly state: ICRUDStoreState<Entity> = {}
-  ) {}
+  constructor(private service: ICRUDService<Entity>) {}
   get actions(): {} {
     const service: ICRUDService<Entity> = this.service;
     return {
       async [CRUD_ACTION_GET_LIST](store: Store<ICRUDStoreState<Entity>>) {
         const list = await service.list();
-        debugger;
-
         store.commit(CRUD_MUTATION_STORE_LIST, list);
       }
     };
@@ -28,7 +23,6 @@ export default abstract class CRUDStoreModule<Entity extends IDatabaseEntity> {
       state: ICRUDStoreState<Entity>,
       payload: [Entity]
     ) {
-      debugger;
       state.list = payload;
     }
   };

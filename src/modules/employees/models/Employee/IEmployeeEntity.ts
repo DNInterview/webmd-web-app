@@ -1,6 +1,6 @@
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
 
-export default interface IEmployee extends IDatabaseEntity {
+export default interface IEmployeeEntity extends IDatabaseEntity {
   readonly _typename: string;
   readonly firstName?: string | null;
   readonly lastName?: string | null;

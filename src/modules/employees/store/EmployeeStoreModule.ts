@@ -1,4 +1,6 @@
 import CRUDStoreModule from "@/modules/crud/stores/CRUDStoreModule";
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 
-export default class EmployeeStoreModule extends CRUDStoreModule<IEmployee> {}
+export default class EmployeeStoreModule extends CRUDStoreModule<
+  IEmployeeEntity
+> {}

@@ -19,7 +19,7 @@ describe("CRUDStoreModule", () => {
   beforeEach(() => {
     stubState = {} as EmployeeStoreState;
     mockService = {} as EmployeeService;
-    crudStoreModule = new EmployeeStoreModule(mockService, stubState);
+    crudStoreModule = new EmployeeStoreModule(mockService);
     Vue.use(Vuex);
     vuexStore = new Store({
       actions: crudStoreModule.actions,

@@ -1,5 +1,6 @@
 <template>
   <div class="employee-view">
+    <h1>Employees</h1>
     <table v-if="list" class="crud-view__entity-list">
       <thead>
         <tr>
@@ -16,41 +17,37 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import IEmployeeView from "@/modules/employees/components/IEmployeeView";
+import { Component } from "vue-property-decorator";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
+import CrudView from "@/modules/crud/components/CrudView";
+import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
-import IEmployee from "@/modules/employees/models/Employee/IEmployee";
 
 @Component
-export default class EmployeeView extends Vue implements IEmployeeView {
-  mounted() {
+export default class EmployeeView extends CrudView<
+  IEmployeeEntity,
+  EmployeeStoreState
+> {
+  public mounted() {
     debugger;
-    this.$store.dispatch(CRUD_ACTION_GET_LIST);
-  }
-  list: IEmployee[] = [];
-  public get columns(): string[] {
-    if (this.list) {
-      return this.list!.length ? this.list![0].fields : [];
-    }
-    return [];
+    super.mounted();
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+h1 {
+  font-size: larger;
+}
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+table {
+  align-content: center;
+  margin: 40px 10px 10px 40px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+td {
+  border: 1px solid black;
 }
 </style>
