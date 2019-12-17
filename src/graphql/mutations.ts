@@ -9,7 +9,7 @@ export const createEmployee = `mutation CreateEmployee(
   $state: String
   $country: String
   $hireDate: AWSDate
-  $endDate: AWSDate
+  $employmentEndDate: AWSDate
 ) {
   createEmployee(
     firstName: $firstName
@@ -19,7 +19,7 @@ export const createEmployee = `mutation CreateEmployee(
     state: $state
     country: $country
     hireDate: $hireDate
-    endDate: $endDate
+    employmentEndDate: $employmentEndDate
   ) {
     id
     firstName
@@ -29,7 +29,7 @@ export const createEmployee = `mutation CreateEmployee(
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;
@@ -41,7 +41,7 @@ export const updateEmployee = `mutation UpdateEmployee(
   $state: String
   $country: String
   $hireDate: AWSDate
-  $endDate: AWSDate
+  $employmentEndDate: AWSDate
 ) {
   updateEmployee(
     firstName: $firstName
@@ -51,7 +51,7 @@ export const updateEmployee = `mutation UpdateEmployee(
     state: $state
     country: $country
     hireDate: $hireDate
-    endDate: $endDate
+    employmentEndDate: $employmentEndDate
   ) {
     id
     firstName
@@ -61,7 +61,7 @@ export const updateEmployee = `mutation UpdateEmployee(
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;

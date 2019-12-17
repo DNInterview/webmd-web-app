@@ -11,7 +11,7 @@ export const getEmployee = `query GetEmployee($id: ID!) {
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;
@@ -25,7 +25,7 @@ export const allEmployees = `query AllEmployees {
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;

@@ -1,4 +1,6 @@
 import IEmployee from "./IEmployee";
+import IEmployeeJson from "@/modules/employees/services/EmployeeService/IEmployeeJson";
+import ISerializable from "@/modules/core/models/interfaces/ISerializable";
 
 export default class Employee implements IEmployee {
   constructor(

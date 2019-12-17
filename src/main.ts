@@ -17,7 +17,7 @@ const credentials = new AWS.Credentials({
   accessKeyId: process.env.VUE_APP_AWS_ACCESS_KEY_ID || "",
   secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY || ""
 });
-const awsService = new AWSService(credentials);
+// const awsService = new AWSService(credentials);
 
 new Vue({
   store,
@@ -49,7 +49,6 @@ const client = new AWSAppSyncClient({
 const subquery = gql(newEmployee);
 
 const test = async () => {
-  await client.hydrated();
   const observable = client.subscribe({ query: subquery });
   observable.subscribe({
     next: (data: any) => {

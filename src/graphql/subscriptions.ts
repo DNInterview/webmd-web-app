@@ -11,7 +11,7 @@ export const newEmployee = `subscription NewEmployee {
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;
@@ -25,7 +25,7 @@ export const updatedEmployee = `subscription UpdatedEmployee {
     state
     country
     hireDate
-    endDate
+    employmentEndDate
   }
 }
 `;

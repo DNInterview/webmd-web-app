@@ -1,15 +1,18 @@
 projects:
-  webmdgraph:
-    schemaPath: amplify/backend/api/webmdgraph/build/schema.employees
+  webmdgraph-develop:
+    schemaPath: src/graphql/schema.json
     includes:
-      - src/employees/**/*.ts
+      - src/graphql/**/*.ts
     excludes:
       - ./amplify/**
     extensions:
       amplify:
         codeGenTarget: typescript
         generatedFileName: src/API.ts
-        docsFilePath: src/employees
+        docsFilePath: src/graphql
+        region: us-east-1
+        apiId: uwggx6wdajb5rgdxiwi3rqya24
+        maxDepth: 2
 extensions:
   amplify:
     version: 3

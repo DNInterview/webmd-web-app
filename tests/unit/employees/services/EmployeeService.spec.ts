@@ -23,8 +23,8 @@ describe("EmployeeService", () => {
         "state",
         "country",
         "phoneNumber",
-        new Date(),
-        new Date()
+        "endDate",
+        "hireDate"
       );
 
       // Act

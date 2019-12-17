@@ -9,7 +9,7 @@ export type CreateEmployeeMutationVariables = {
   state?: string | null;
   country?: string | null;
   hireDate?: string | null;
-  endDate?: string | null;
+  employmentEndDate?: string | null;
 };
 
 export type CreateEmployeeMutation = {
@@ -23,7 +23,7 @@ export type CreateEmployeeMutation = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   };
 };
 
@@ -35,7 +35,7 @@ export type UpdateEmployeeMutationVariables = {
   state?: string | null;
   country?: string | null;
   hireDate?: string | null;
-  endDate?: string | null;
+  employmentEndDate?: string | null;
 };
 
 export type UpdateEmployeeMutation = {
@@ -49,7 +49,7 @@ export type UpdateEmployeeMutation = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   };
 };
 
@@ -76,7 +76,7 @@ export type GetEmployeeQuery = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   } | null;
 };
 
@@ -91,7 +91,7 @@ export type AllEmployeesQuery = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   } | null> | null;
 };
 
@@ -106,7 +106,7 @@ export type NewEmployeeSubscription = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   } | null;
 };
 
@@ -121,7 +121,7 @@ export type UpdatedEmployeeSubscription = {
     state: string | null;
     country: string | null;
     hireDate: string | null;
-    endDate: string | null;
+    employmentEndDate: string | null;
   } | null;
 };
 
