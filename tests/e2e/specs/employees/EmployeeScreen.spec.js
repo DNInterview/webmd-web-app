@@ -19,7 +19,7 @@ describe("EmployeeView", () => {
         ];
 
         // Act
-        cy.visit(Cypress.env("local").baseUrl);
+        cy.visit(Cypress.env("baseUrl"));
 
         // Assert
         tableColumns.forEach(columnName => {
