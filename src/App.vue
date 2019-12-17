@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import CrudView from "./modules/core/components/CrudView.vue";
+import CrudView from "./modules/crud/components/CrudView.vue";
 
 @Component({
   components: {
