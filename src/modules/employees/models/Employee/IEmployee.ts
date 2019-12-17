@@ -1,13 +1,6 @@
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
+import IEmployeeAttributes from "@/modules/employees/models/Employee/IEmployeeAttributes";
 
-export default interface IEmployee extends IDatabaseEntity {
-  readonly id: string;
-  readonly firstName?: string;
-  readonly lastName?: string;
-  readonly city?: string;
-  readonly state?: string;
-  readonly country?: string;
-  readonly phoneNumber?: string;
-  readonly employmentEndDate?: Date;
-  readonly hireDate?: Date;
-}
+export default interface IEmployee
+  extends IDatabaseEntity,
+    IEmployeeAttributes {}
