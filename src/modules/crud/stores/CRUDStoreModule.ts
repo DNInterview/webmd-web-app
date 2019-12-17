@@ -7,7 +7,7 @@ import {
 } from "@/modules/crud/stores/CRUDStoreModule.constants";
 import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
 
-export default class CRUDStoreModule<Entity extends IDatabaseEntity> {
+export default abstract class CRUDStoreModule<Entity extends IDatabaseEntity> {
   constructor(
     private service: ICRUDService<Entity>,
     readonly state: ICRUDStoreState<Entity>
