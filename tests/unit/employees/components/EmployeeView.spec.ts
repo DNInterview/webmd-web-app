@@ -61,7 +61,7 @@ describe("EmployeeView", () => {
         ];
         // Act
         const actualColumns = ((employeeView as unknown) as IEmployeeView)
-          .columns;
+          .entityColumns;
 
         // Assert
         expect(actualColumns).toEqual(expectedColumns);
@@ -79,7 +79,7 @@ describe("EmployeeView", () => {
         const expectedColumns: string[] = [];
         // Act
         const actualColumns = ((employeeView as unknown) as IEmployeeView)
-          .columns;
+          .entityColumns;
 
         // Assert
         expect(actualColumns).toEqual(expectedColumns);
