@@ -1,37 +1,88 @@
-import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
 import EmployeeService from "@/modules/employees/services/EmployeeService/EmployeeService";
-import AWS from "aws-sdk";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import AWSAppSyncClient from "aws-appsync/lib";
+import { NormalizedCacheObject } from "apollo-cache-inmemory";
+import Employee from "@/modules/employees/models/Employee/Employee";
+import { newEmployee } from "@/graphql/subscriptions";
+import { AllEmployeesQuery } from "@/API";
 describe("EmployeeService", () => {
   let employeeService: EmployeeService;
+  let mockAppSyncClient: AWSAppSyncClient<NormalizedCacheObject>;
   beforeAll(() => {
-    const awsService = new AWSService(
-      new AWS.Credentials({
-        accessKeyId: process.env.VUE_APP_AWS_ACCESS_KEY_ID || "",
-        secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY || ""
-      })
-    );
-    employeeService = new EmployeeService(awsService.appSyncClient);
+    mockAppSyncClient = {} as AWSAppSyncClient<NormalizedCacheObject>;
+    employeeService = new EmployeeService(mockAppSyncClient);
   });
-  describe("create", () => {
-    it("creates an employee", async () => {
+  describe("list", () => {
+    it("queries the client and returns a list of employees", async () => {
       // Arrange
-      const employeeOptions = new CreateEmployeeOptions(
-        "first",
-        "last",
-        "city",
-        "state",
-        "country",
-        "phoneNumber",
-        "endDate",
-        "hireDate"
-      );
+
+      const expectedId1 = "id1";
+      const expectedId2 = "id2";
+      const expectedResponse: AllEmployeesQuery = {
+        allEmployees: [
+          {
+            __typename: "Employee",
+            id: expectedId1,
+            firstName: null,
+            lastName: null,
+            phoneNumber: null,
+            city: null,
+            state: null,
+            country: null,
+            hireDate: null,
+            employmentEndDate: null
+          },
+          {
+            __typename: "Employee",
+            id: expectedId2,
+            firstName: null,
+            lastName: null,
+            phoneNumber: null,
+            city: null,
+            state: null,
+            country: null,
+            hireDate: null,
+            employmentEndDate: null
+          }
+        ]
+      };
+      const expectedEmployees = [
+        new Employee(
+          expectedId1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ),
+        new Employee(
+          expectedId2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        )
+      ];
+      mockAppSyncClient.hydrated = jest.fn();
+      mockAppSyncClient.query = jest
+        .fn()
+        .mockReturnValueOnce(
+          new Promise(resolve => resolve({ data: expectedResponse }))
+        );
 
       // Act
-      const actualEmployee = await employeeService.create(employeeOptions);
+      const actualEmployees = await employeeService.list();
 
       // Assert
-      expect(actualEmployee).toEqual(employeeOptions);
+      expect(mockAppSyncClient.hydrated).toHaveBeenCalled();
+      expect(actualEmployees).toContainEqual(expectedEmployees);
     });
   });
 });

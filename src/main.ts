@@ -10,6 +10,7 @@ import { AUTH_TYPE } from "aws-appsync/lib";
 import { AuthOptions } from "aws-appsync-auth-link/lib/auth-link";
 import store from "./index";
 import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
+import { allEmployees } from "@/graphql/queries";
 
 Vue.config.productionTip = false;
 
@@ -46,17 +47,30 @@ const client = new AWSAppSyncClient({
   auth
 });
 
-const subquery = gql(newEmployee);
+// const subquery = gql(newEmployee);
 
 const test = async () => {
-  const observable = client.subscribe({ query: subquery });
-  observable.subscribe({
-    next: (data: any) => {
-      console.log("realtime data: ", data);
-    },
-    complete: console.log,
-    error: console.error
-  });
+  const observable = await client.query({ query: gql(allEmployees) });
+  debugger;
+  console.log(observable, "observable");
+  // observable.subscribe({
+  //   next: (data: any) => {
+  //     debugger;
+  //     console.log("realtime data: ", data);
+  //   },
+  //   complete: console.log,
+  //   error: console.error
+  // });
+
+  // const observable = client.subscribe({ query: subquery });
+  // observable.subscribe({
+  //   next: (data: any) => {
+  //     debugger;
+  //     console.log("realtime data: ", data);
+  //   },
+  //   complete: console.log,
+  //   error: console.error
+  // });
 };
 
 test();

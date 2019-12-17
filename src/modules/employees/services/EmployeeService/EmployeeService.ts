@@ -7,7 +7,7 @@ import UpdateEmployeeOptions from "@/modules/employees/services/EmployeeService/
 import { allEmployees } from "@/graphql/queries";
 import gql from "graphql-tag";
 import { AllEmployeesQuery } from "@/API";
-import Employee from "@/modules/employees/models/Employee/Employee";
+import AllEmployeesDeserializer from "@/modules/employees/services/EmployeeService/AllEmployeesDeserializer";
 
 export default class EmployeeService implements ICRUDService<IEmployee> {
   constructor(private client: AWSAppSyncClient<NormalizedCacheObject>) {}
@@ -17,14 +17,12 @@ export default class EmployeeService implements ICRUDService<IEmployee> {
   read(id: string): Promise<IEmployee> {
     throw new Error("not yet implemented");
   }
-  async list(): Promise<[IEmployee]> {
+  async list(): Promise<IEmployee[]> {
     await this.client.hydrated();
     const result = await this.client.query<AllEmployeesQuery>({
       query: gql(allEmployees)
     });
-    return result.data.allEmployees.map(graphEmployee =>
-      Employee.fromJson(graphEmployee)
-    );
+    return new AllEmployeesDeserializer().deserialize(result.data);
   }
   update(id: string, options: UpdateEmployeeOptions): Promise<IEmployee> {
     throw new Error("not yet implemented");
