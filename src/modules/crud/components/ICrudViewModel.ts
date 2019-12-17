@@ -1,8 +1,8 @@
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
-import IEntityOptions from "@/modules/crud/options/IEntityOptions";
+import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 
-export default interface ICrudView<Entity extends IDatabaseEntity> {
-  formModel: IEntityOptions<Entity>;
+export default interface ICrudViewModel<Entity extends IDatabaseEntity> {
+  formModel: ICreateEntityOptions<Entity>;
   showCreateFormModal: boolean;
   showUpdateFormModal: boolean;
   readonly entityList: Entity[];

@@ -1,25 +1,25 @@
 import { Vue } from "vue-property-decorator";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
 import { Store } from "vuex";
-import ICrudView from "@/modules/crud/components/ICrudView";
+import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
 import { ICRUDStoreState } from "@/modules/crud/stores/ICRUDStoreState";
-import IEntityOptions from "@/modules/crud/options/IEntityOptions";
+import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 
 export default abstract class CrudViewModel<
   Entity extends IDatabaseEntity,
   StoreState extends ICRUDStoreState<Entity>
-> extends Vue implements ICrudView<IDatabaseEntity> {
+> extends Vue implements ICrudViewModel<IDatabaseEntity> {
   showCreateFormModal = false;
   showUpdateFormModal = false;
-  formModel: IEntityOptions<IDatabaseEntity> = {} as IEntityOptions<
+  formModel: ICreateEntityOptions<IDatabaseEntity> = {} as ICreateEntityOptions<
     IDatabaseEntity
   >;
   get crudStore(): Store<StoreState> {
     return this.$store as Store<StoreState>;
   }
   get entityList(): Entity[] {
-    return this.crudStore.state.list;
+    return this.crudStore.state.entityList;
   }
   public get entityColumns(): string[] {
     if (this.entityList) {

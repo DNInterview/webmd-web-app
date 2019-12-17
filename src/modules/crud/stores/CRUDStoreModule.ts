@@ -23,7 +23,7 @@ export default abstract class CRUDStoreModule<Entity extends IDatabaseEntity> {
       state: ICRUDStoreState<Entity>,
       payload: [Entity]
     ) {
-      state.list = payload;
+      state.entityList = payload;
     }
   };
 }

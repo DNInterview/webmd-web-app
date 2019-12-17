@@ -45,7 +45,7 @@ describe("CRUDStoreModule", () => {
 
         // Assert
         expect(mockService.list).toHaveBeenCalled();
-        expect(vuexStore.state.list).toEqual(expectedEmployeeList);
+        expect(vuexStore.state.entityList).toEqual(expectedEmployeeList);
       });
     });
   });

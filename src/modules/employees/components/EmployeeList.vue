@@ -1,18 +1,5 @@
 <template>
   <div class="employee-view">
-    <h1>Employees</h1>
-    <button
-      class="employee-view__create-button"
-      @click="showCreateFormModal = true"
-    >
-      Show Modal
-    </button>
-    <modal-entity-form
-      v-if="showCreateFormModal"
-      @close="showCreateFormModal = false"
-    >
-    </modal-entity-form>
-
     <table class="employee-view__entity-list">
       <thead class="employee-view__list-header">
         <tr>
@@ -31,11 +18,9 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
-
-Vue.component("modal-entity-form", {
-  template: "#modal-entity-form"
-});
+export default {
+  props: ["entityColumns", "entityList"]
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -7,39 +7,29 @@
     >
       Show Modal
     </button>
-    <modal-entity-form
+    <employee-form
       v-if="showCreateFormModal"
       @close="showCreateFormModal = false"
     >
-    </modal-entity-form>
-
-    <table class="employee-view__entity-list">
-      <thead class="employee-view__list-header">
-        <tr>
-          <th v-for="col in entityColumns" v-bind:key="col">{{ col }}</th>
-        </tr>
-      </thead>
-      <tbody class="employee-view__list-body">
-        <tr v-for="(row, key) in entityList" v-bind:key="key">
-          <td v-for="(col, key) in entityColumns" v-bind:key="key">
-            {{ row[col] }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    </employee-form>
+    <employee-list :entity-columns="entityColumns" :entity-list="entityList" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-Vue.component("modal-entity-form", {
-  template: ".modal-entity-form"
-});
+import EmployeeList from "@/modules/employees/components/EmployeeList.vue";
+import EmployeeForm from "@/modules/employees/components/EmployeeForm/EmployeeForm.vue";
 
-@Component
+@Component({
+  components: {
+    EmployeeList,
+    EmployeeForm
+  }
+})
 export default class EmployeeViewModel extends CrudViewModel<
   IEmployeeEntity,
   EmployeeStoreState

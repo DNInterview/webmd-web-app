@@ -1,10 +1,12 @@
-import IEntityOptions from "@/modules/crud/options/IEntityOptions";
+import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import { CreateEmployeeMutationVariables } from "@/API";
 import { Field, ReflectFields } from "@/modules/core/models/ReflectFields";
 
 export default class CreateEmployeeOptions extends ReflectFields
-  implements IEntityOptions<IEmployeeEntity>, CreateEmployeeMutationVariables {
+  implements
+    ICreateEntityOptions<IEmployeeEntity>,
+    CreateEmployeeMutationVariables {
   @Field()
   firstName?: string;
   @Field()

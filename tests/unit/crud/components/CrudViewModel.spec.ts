@@ -1,7 +1,7 @@
 import Employee from "@/modules/employees/models/Employee/Employee";
 import IEmployeeView from "@/modules/employees/components/IEmployeeView";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CRUDStoreModule.constants";
-import ICrudView from "@/modules/crud/components/ICrudView";
+import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 import { Store } from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
@@ -25,7 +25,7 @@ describe("CrudViewModel", () => {
       employeeView.$store.dispatch = jest.fn();
 
       // Act
-      ((employeeView as unknown) as ICrudView<Employee>).mounted();
+      ((employeeView as unknown) as ICrudViewModel<Employee>).mounted();
 
       // Assert
       expect(employeeView.$store.dispatch).toHaveBeenCalledWith(
@@ -39,7 +39,7 @@ describe("CrudViewModel", () => {
         // Arrange
         employeeView.$store = {
           state: {
-            list: [
+            entityList: [
               new Employee(
                 "some id",
                 null,
@@ -79,7 +79,7 @@ describe("CrudViewModel", () => {
         const list: IEmployeeEntity[] = [];
         employeeView.$store = {
           state: {
-            list
+            entityList: list
           }
         } as Store<EmployeeStoreState>;
         const expectedColumns: string[] = [];

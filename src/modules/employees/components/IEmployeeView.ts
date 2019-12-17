@@ -1,7 +1,7 @@
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import ICrudView from "@/modules/crud/components/ICrudView";
+import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 
-export default interface IEmployeeView extends ICrudView<IEmployeeEntity> {
+export default interface IEmployeeView extends ICrudViewModel<IEmployeeEntity> {
   entityList: IEmployeeEntity[];
   readonly entityColumns: string[];
 }
