@@ -8,9 +8,21 @@ import AWS from "aws-sdk";
 import gql from "graphql-tag";
 import { AUTH_TYPE } from "aws-appsync/lib";
 import { AuthOptions } from "aws-appsync-auth-link/lib/auth-link";
-import store from "./store";
+import store from "./index";
+import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
 
 Vue.config.productionTip = false;
+
+const credentials = new AWS.Credentials({
+  accessKeyId: process.env.VUE_APP_AWS_ACCESS_KEY_ID || "",
+  secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY || ""
+});
+const awsService = new AWSService(
+  aws_exports.aws_project_region,
+  aws_exports.aws_appsync_graphqlEndpoint,
+  AUTH_TYPE.AWS_IAM,
+  credentials
+);
 
 new Vue({
   store,
@@ -27,7 +39,6 @@ AWS.config.update({
     secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY || ""
   })
 });
-const credentials = AWS.config.credentials;
 
 const auth = {
   type: AUTH_TYPE.AWS_IAM,
@@ -45,12 +56,11 @@ const subquery = gql(newEmployee);
 const test = async () => {
   await client.hydrated();
   const observable = client.subscribe({ query: subquery });
-  debugger;
   observable.subscribe({
     next: (data: any) => {
       console.log("realtime data: ", data);
     },
-    completion: console.log,
+    complete: console.log,
     error: console.error
   });
 };

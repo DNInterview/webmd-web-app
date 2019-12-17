@@ -1,18 +1,12 @@
-import ICRUDService from "../ICRUDService";
+import ICRUDService from "../../../crud/services/ICRUDService";
 import IEmployee from "../../models/Employee/IEmployee";
 import AWSAppSyncClient from "aws-appsync/lib";
-import {
-  NormalizedCacheObject,
-  StoreObject
-} from "apollo-cache-inmemory/lib/types";
+import { NormalizedCacheObject } from "apollo-cache-inmemory/lib/types";
 
-class Cache implements NormalizedCacheObject {
-  [dataId: string]: StoreObject;
-}
-export default class AWSEmployeeService implements ICRUDService<IEmployee> {
-  constructor(private client: AWSAppSyncClient<Cache>) {}
+export default class EmployeeService implements ICRUDService<IEmployee> {
+  constructor(private client: AWSAppSyncClient<NormalizedCacheObject>) {}
 
-  create(attributes: IEmployee): Promise<IEmployee> {
+  create(): Promise<IEmployee> {
     throw new Error("not yet implemented");
   }
   read(id: string): Promise<IEmployee> {

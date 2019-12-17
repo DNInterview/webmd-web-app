@@ -1,10 +1,10 @@
 import { shallowMount } from "@vue/test-utils";
-import HelloWorld from "@/components/HelloWorld.vue";
+import CrudView from "@/modules/core/components/CrudView.vue";
 
-describe("HelloWorld.vue", () => {
+describe("CrudView.vue", () => {
   it("renders props.msg when passed", () => {
     const msg = "new message";
-    const wrapper = shallowMount(HelloWorld, {
+    const wrapper = shallowMount(CrudView, {
       propsData: { msg }
     });
     expect(wrapper.text()).toMatch(msg);

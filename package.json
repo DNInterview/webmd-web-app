@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lint:fix": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "aws-appsync": "^3.0.2",
@@ -17,7 +18,8 @@
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-property-decorator": "^8.3.0",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vuex-module-decorators": "latest"
   },
   "devDependencies": {
     "@types/graphql": "^14.5.0",
