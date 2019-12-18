@@ -1,4 +1,5 @@
 import {
+  CRUD_ACTION_CREATE_ENTITY,
   CRUD_ACTION_GET_LIST,
   CRUD_MUTATION_STORE_LIST
 } from "@/modules/crud/stores/CrudStoreModule.constants";
@@ -10,6 +11,7 @@ import Employee from "@/modules/employees/models/Employee/Employee";
 import Vue from "vue";
 import Vuex from "vuex";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
+import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 
 describe("CrudStoreModule", () => {
   let mockService: EmployeeService;
@@ -46,6 +48,24 @@ describe("CrudStoreModule", () => {
         // Assert
         expect(mockService.list).toHaveBeenCalled();
         expect(vuexStore.state.entityList).toEqual(expectedEmployeeList);
+      });
+    });
+    describe(CRUD_ACTION_CREATE_ENTITY, () => {
+      it(`get entity list and commits changes to ${CRUD_MUTATION_STORE_LIST}`, async () => {
+        // Arrange
+        const createOptions = new CreateEmployeeOptions();
+        const expectedEmployee = new Employee("some id 1");
+        mockService.create = jest
+          .fn()
+          .mockReturnValueOnce(
+            new Promise(resolve => resolve(expectedEmployee))
+          );
+
+        // Act
+        await vuexStore.dispatch(CRUD_ACTION_CREATE_ENTITY, createOptions);
+
+        // Assert
+        expect(mockService.create).toHaveBeenCalled();
       });
     });
   });

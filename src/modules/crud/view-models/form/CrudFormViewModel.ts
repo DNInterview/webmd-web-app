@@ -14,11 +14,9 @@ export default abstract class CrudFormViewModel<Entity extends IDatabaseEntity>
     return this.crudState.shouldShowForm;
   }
 
-  closeForm(): void {
-    this.crudState.shouldShowForm = false;
-  }
+  abstract submitForm(): void;
 
-  showForm(): void {
-    this.crudState.shouldShowForm = true;
-  }
+  abstract closeForm(): void;
+
+  abstract showForm(): void;
 }

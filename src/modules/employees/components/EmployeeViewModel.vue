@@ -9,11 +9,9 @@
 <script lang="ts">
 import { Component } from "vue-property-decorator";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import EntityList from "@/modules/employees/components/EmployeeListViewModel/EmployeeListViewModel.vue";
 import EntityForm from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModel.vue";
 import CrudViewModel from "@/modules/crud/view-models/CrudViewModel";
-import { Store } from "vuex";
 
 @Component({
   components: {

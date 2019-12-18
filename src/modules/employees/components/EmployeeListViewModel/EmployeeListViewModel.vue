@@ -4,12 +4,24 @@
       <thead class="employee-view__list-header">
         <tr>
           <th v-for="col in entityColumns" v-bind:key="col">{{ col }}</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody class="employee-view__list-body">
-        <tr v-for="(row, key) in entityList" v-bind:key="key">
+        <tr
+          v-for="(row, key) in entityList"
+          v-bind:key="key"
+          v-bind="selectedRow"
+        >
           <td v-for="(col, key) in entityColumns" v-bind:key="key">
             {{ row[col] }}
+          </td>
+          <td><button>+</button></td>
+          <td>
+            <button @click="deleteEntity" :v-model="(selectedRow = key)">
+              x
+            </button>
           </td>
         </tr>
       </tbody>
@@ -23,13 +35,24 @@ import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity
 import CrudTableViewModel from "@/modules/crud/view-models/table-view/CrudTableViewModel";
 import { Vue } from "vue-property-decorator";
 import Vuex from "vuex";
+import { CRUD_ACTION_DELETE_ENTITY } from "@/modules/crud/stores/CrudStoreModule.constants";
 
 Vue.use(Vuex);
 
 @Component({})
 export default class EmployeeListViewModel extends CrudTableViewModel<
   IEmployeeEntity
-> {}
+> {
+  selectedRow = 0;
+  deleteEntity() {
+    if (this.selectedRow) {
+      this.$store.dispatch(
+        CRUD_ACTION_DELETE_ENTITY,
+        this.entityList[this.selectedRow!]
+      );
+    }
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

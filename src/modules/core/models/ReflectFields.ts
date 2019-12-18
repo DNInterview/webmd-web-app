@@ -10,7 +10,7 @@ export function Field(): PropertyDecorator {
 }
 
 export abstract class ReflectFields {
-  get fields() {
+  get fields(): string[] {
     let fields = [];
     let target = Object.getPrototypeOf(this);
     while (target != Object.prototype) {

@@ -8,8 +8,8 @@ export const createEmployee = `mutation CreateEmployee(
   $city: String
   $state: String
   $country: String
-  $hireDate: AWSDate
-  $employmentEndDate: AWSDate
+  $hireDate: String
+  $employmentEndDate: String
 ) {
   createEmployee(
     firstName: $firstName
@@ -40,8 +40,8 @@ export const updateEmployee = `mutation UpdateEmployee(
   $city: String
   $state: String
   $country: String
-  $hireDate: AWSDate
-  $employmentEndDate: AWSDate
+  $hireDate: String
+  $employmentEndDate: String
 ) {
   updateEmployee(
     firstName: $firstName

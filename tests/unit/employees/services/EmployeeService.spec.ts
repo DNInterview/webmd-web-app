@@ -5,18 +5,23 @@ import Employee from "@/modules/employees/models/Employee/Employee";
 import { AllEmployeesQuery } from "@/API";
 import gql from "graphql-tag";
 import { allEmployees } from "@/graphql/queries";
+import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import { createEmployee } from "@/graphql/mutations";
+import EmployeeQueryBuilder from "./EmployeeQueryBuilder";
 
 describe("EmployeeService", () => {
   let employeeService: EmployeeService;
   let mockAppSyncClient: AWSAppSyncClient<NormalizedCacheObject>;
   beforeAll(() => {
     mockAppSyncClient = {} as AWSAppSyncClient<NormalizedCacheObject>;
-    employeeService = new EmployeeService(mockAppSyncClient);
+    employeeService = new EmployeeService(
+      mockAppSyncClient,
+      new EmployeeQueryBuilder()
+    );
   });
   describe("list", () => {
     it("queries the client and returns a list of employees", async () => {
       // Arrange
-
       const expectedId1 = "id1";
       const expectedId2 = "id2";
       const expectedQuery = { query: gql(allEmployees) };

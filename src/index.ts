@@ -6,6 +6,7 @@ import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
 import EmployeeService from "@/modules/employees/services/EmployeeService/EmployeeService";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import EmployeeQueryBuilder from "../tests/unit/employees/services/EmployeeQueryBuilder";
 
 Vue.use(Vuex);
 
@@ -14,7 +15,10 @@ const credentials = new AWS.Credentials({
   secretAccessKey: process.env.VUE_APP_AWS_SECRET_ACCESS_KEY || ""
 });
 const awsService = new AWSService(credentials);
-const employeeService = new EmployeeService(awsService.appSyncClient);
+const employeeService = new EmployeeService(
+  awsService.appSyncClient,
+  new EmployeeQueryBuilder()
+);
 const employeeCreateFormModel = new CreateEmployeeOptions();
 const employeeState = new EmployeeStoreState(
   [],
