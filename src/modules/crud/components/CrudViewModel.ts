@@ -10,8 +10,9 @@ export default abstract class CrudViewModel<
   Entity extends IDatabaseEntity,
   StoreState extends ICrudStoreState<Entity>
 > extends Vue implements ICrudViewModel<Entity> {
-  showCreateFormModal = false;
-  showUpdateFormModal = false;
+  get shouldShowForm(): boolean {
+    return this.crudStore.state.shouldShowForm;
+  }
   get crudStore(): Store<StoreState> {
     return this.$store as Store<StoreState>;
   }
@@ -31,5 +32,12 @@ export default abstract class CrudViewModel<
 
   public mounted() {
     this.crudStore.dispatch(CRUD_ACTION_GET_LIST);
+  }
+
+  closeForm() {
+    this.crudStore.state.shouldShowForm = false;
+  }
+  showForm() {
+    this.crudStore.state.shouldShowForm = true;
   }
 }

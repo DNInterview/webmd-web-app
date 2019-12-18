@@ -19,17 +19,15 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
-import IEmployeeListViewModel from "@/modules/employees/components/EmployeeListViewModel/IEmployeeListViewModel";
-import { Vue, Prop } from "vue-property-decorator";
+import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
+import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 
 @Component({})
-export default class EmployeeListViewModel<T extends IDatabaseEntity>
-  extends Vue
-  implements IEmployeeListViewModel<T> {
-  @Prop() entityColumns: string[] = [];
-  @Prop() entityList: T[] = [];
-}
+export default class EmployeeViewModel extends CrudViewModel<
+  IEmployeeEntity,
+  EmployeeStoreState
+> {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

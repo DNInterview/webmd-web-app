@@ -3,12 +3,12 @@
     <button
       class="entity-view__create-button"
       @click="showForm"
-      v-if="!showFormModal"
+      v-if="!showForm"
     >
       Create
     </button>
 
-    <div class="modal-entity-form" v-if="showFormModal" @close="closeForm">
+    <div class="modal-entity-form" v-if="shouldShowForm" @close="closeForm">
       <transition name="modal">
         <div class="modal-mask">
           <div class="modal-wrapper">
@@ -40,27 +40,16 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
-import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
-import IEntityOptions from "@/modules/crud/options/IEntityOptions";
-import IEmployeeFormViewModel from "@/modules/employees/components/EmployeeForm/IEmployeeFormViewModel";
 import Component from "vue-class-component";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
+import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
+import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 
 @Component({})
-export default class EmployeeFormViewModel<T extends IDatabaseEntity>
-  extends Vue
-  implements IEmployeeFormViewModel<T> {
-  @Prop() formModel?: IEntityOptions<T>;
-  @Prop() showFormModal = false;
-
-  closeForm() {
-    this.showFormModal = false;
-  }
-  showForm() {
-    debugger;
-    this.showFormModal = true;
-  }
-}
+export default class EmployeeViewModel extends CrudViewModel<
+  IEmployeeEntity,
+  EmployeeStoreState
+> {}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -16,7 +16,11 @@ const credentials = new AWS.Credentials({
 const awsService = new AWSService(credentials);
 const employeeService = new EmployeeService(awsService.appSyncClient);
 const employeeCreateFormModel = new CreateEmployeeOptions();
-const employeeState = new EmployeeStoreState([], employeeCreateFormModel);
+const employeeState = new EmployeeStoreState(
+  [],
+  employeeCreateFormModel,
+  false
+);
 const employeeStore = new EmployeeStoreModule(employeeService);
 export default new Vuex.Store({
   state: employeeState,

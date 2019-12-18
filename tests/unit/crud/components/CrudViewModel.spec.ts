@@ -7,6 +7,7 @@ import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import IEmployeeFormViewModel from "@/modules/employees/components/EmployeeForm/IEmployeeFormViewModel";
 
 describe("CrudViewModel", () => {
   class TestCrudViewModel extends CrudViewModel<
@@ -104,6 +105,42 @@ describe("CrudViewModel", () => {
 
       // Assert
       expect(actualFormModel).toEqual(expectedFormModel);
+    });
+  });
+  describe("closeForm", () => {
+    it("sets showFormModal to false", () => {
+      // Arrange
+      testCrudViewModel.crudStore.state.shouldShowForm = true;
+      // Act
+      testCrudViewModel.closeForm();
+
+      // Assert
+      expect(testCrudViewModel.crudStore.state.shouldShowForm).toBeFalsy();
+    });
+  });
+  describe("showForm", () => {
+    it("sets showFormModal to true", () => {
+      // Arrange
+      testCrudViewModel.crudStore.state.shouldShowForm = false;
+
+      // Act
+      testCrudViewModel.showForm();
+
+      // Assert
+      expect(testCrudViewModel.crudStore.state.shouldShowForm).toBeTruthy();
+    });
+  });
+  describe("shouldShowForm", () => {
+    it("sets showFormModal to true", () => {
+      // Arrange
+      const expectedShouldShowForm = false;
+      testCrudViewModel.crudStore.state.shouldShowForm = expectedShouldShowForm;
+
+      // Act
+      const actualShouldShowForm = testCrudViewModel.shouldShowForm;
+
+      // Assert
+      expect(actualShouldShowForm).toEqual(expectedShouldShowForm);
     });
   });
 });

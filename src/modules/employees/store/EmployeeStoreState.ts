@@ -6,6 +6,7 @@ export default class EmployeeStoreState
   implements ICrudStoreState<IEmployeeEntity> {
   constructor(
     readonly entityList: IEmployeeEntity[],
-    public createFormModel: ICreateEntityOptions<IEmployeeEntity>
+    public createFormModel: ICreateEntityOptions<IEmployeeEntity>,
+    public shouldShowForm: boolean
   ) {}
 }
