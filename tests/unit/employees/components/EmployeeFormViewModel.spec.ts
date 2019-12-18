@@ -2,18 +2,12 @@ import EmployeeFormViewModel from "@/modules/employees/components/EmployeeForm/E
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 import CrudFormViewModel from "@/modules/crud/view-models/form/CrudFormViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import { Store } from "vuex";
 import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 describe("EmployeeFormViewModel", () => {
-  let employeeFormViewModel: EmployeeFormViewModel;
   let iEmployeeFormViewModel: CrudFormViewModel<IEmployeeEntity>;
   beforeEach(() => {
     iEmployeeFormViewModel = new EmployeeFormViewModel();
-    employeeFormViewModel = iEmployeeFormViewModel;
-    employeeFormViewModel.$store = {
-      state: {}
-    } as Store<IEmployeeEntity>;
   });
 
   describe("create", () => {
@@ -30,7 +24,7 @@ describe("EmployeeFormViewModel", () => {
       iEmployeeFormViewModel.submitForm();
 
       // Assert
-      expect(employeeFormViewModel.$store.dispatch).toHaveBeenCalledWith(
+      expect(iEmployeeFormViewModel.$store.dispatch).toHaveBeenCalledWith(
         "CRUD_ACTION_CREATE_ENTITY",
         expectedOptions
       );
