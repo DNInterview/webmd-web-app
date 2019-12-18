@@ -27,12 +27,12 @@ npm run serve
 npm run build
 ```
 
-### Run your unit tests
+### Run unit tests
 ```
 npm run test:unit
 ```
 
-### Run your end-to-end tests
+### Run end-to-end tests
 ```
 npm run test:e2e
 ```
@@ -68,25 +68,25 @@ Kanban board [here](https://kanbanflow.com/board/q3cRbV)
 
 #### [AWS AppSync](docs/images/AWSAppSync.png)
 
-After getting a general idea of the Live Events Platform that WebMD will be building, it seemed necessary to find an asynchronous microservices solution to provide realtime updates and I settled on using AWS AppSync. 
+After getting an idea of the WebMD Live Events Platform, I wanted to find an asynchronous microservices solution to provide realtime updates and I settled on using AWS AppSync. 
 
 AWS AppSync provides a graphQL API built on top of DynamoDB and combines the graphQL subscriptions with websockets to broadcast any updates to the database to any user or service that is subscribed.
 
 #### Pros
 * One to many broadcasting makes it a scalable realtime update model
-* Feature-rich platform, including many-to-many client broadcasting, caching, connecting with Aurora relational databases vs DynamoDB NoSQL. 
+* Feature-rich platform, including many-to-many client to client broadcasting, caching, connecting with Aurora relational databases vs DynamoDB NoSQL. 
 * Easy to setup
 
 #### Cons
-* Little control over dependencies, which could lead to a heavy reliance on AWS to continue supporting this part of their platform.
+* Seems to be little control over dependencies, which could lead to a heavy reliance on AWS to continue support well into the future.
 
 ### Alternatives
 #### [SNS/SQS](docs/images/AwsSqsSns.png)
-SNS is a publish subscriber service and SQS is a message Queue services and together they provide a mechanism of reliable asynchronous communication in a distributed system of microservices. SNS supports push notifications to mobile devices as well as websocket for publishing to browsers as well. However after further investigation, the websocket mechanism seems to only support 1 to 1 publishes. This means there would need to be a database call to determine for every published message, which cause problems at scale.
+SNS is a publish subscriber service and SQS is a message queue services and together they provide a mechanism of reliable asynchronous communication in a distributed system of microservices. SNS supports push notifications to mobile devices as well as websocket for publishing to browsers as well. However after further investigation, the websocket mechanism seems to only support 1 to 1 publishes. This would likely mean there would need to be some kind of transaction for every published message, which could cause problems at scale.
 
-Honorable mention to REST as one of the primary means of communication over the web, but since it is inherently synchronous and does not provide any mechanism for real time updates, it did not seem like a viable solution for backend communication.
+I decided against using REST because it is inherently synchronous and does not provide any mechanism for real time updates, which limits it as a solution for backend communication.
 
-However, all of these solutions solve specific problems and can be used in parallel.   
+However, all of these solutions solve specific problems and I am not opposed to using them in parallel.   
 
 ### Employees project
 Using the AWS AppSync graphQL API, I developed an MVVM Vue app that uses the graphQL subscriptions to any updates to the databaase. 
