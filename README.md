@@ -74,7 +74,7 @@ AWS AppSync provides a graphQL API built on top of DynamoDB and combines the gra
 
 #### Pros
 * One to many broadcasting makes it a scalable realtime update model
-* Feature-rich platform, including many-to-many client broadcasting, caching, connecting with Aurora relational databases vs DynamoDB NoSQL. 
+* Feature-rich platform, including many-to-many client to client broadcasting, caching, connecting with Aurora relational databases vs DynamoDB NoSQL. 
 * Easy to setup
 
 #### Cons
