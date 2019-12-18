@@ -8,9 +8,12 @@ import gql from "graphql-tag";
 import { AllEmployeesQuery } from "@/API";
 import AllEmployeesDeserializer from "@/modules/employees/services/EmployeeService/AllEmployeesDeserializer";
 import EmployeeQueryBuilder from "../../../../../tests/unit/employees/services/EmployeeQueryBuilder";
-import { newEmployee } from "@/graphql/subscriptions";
+import {
+  newEmployee,
+  removedEmployee,
+  updatedEmployee
+} from "@/graphql/subscriptions";
 import EmployeeDeserializer from "@/modules/employees/models/Employee/EmployeeDeserializer";
-import { deleteEmployee, updateEmployee } from "@/graphql/mutations";
 import ICrudSubscriber from "@/modules/core/services/subscriber/ICrudSubscriber";
 
 export type EmployeeSubscribeCallback = (entity: IEmployeeEntity) => void;
@@ -43,32 +46,34 @@ export default class EmployeeService
     });
   }
   delete(id: string): Promise<boolean> {
-    debugger;
+    const query = this.queryBuilder.delete(id);
     return this.client.mutate({
-      mutation: gql(this.queryBuilder.delete(id))
+      mutation: gql(query)
     });
   }
 
   async subscribeCreate(
     newEntityCallback: EmployeeSubscribeCallback
   ): Promise<void> {
-    await this.subscribe(newEmployee, newEntityCallback);
+    await this.subscribe(newEmployee, newEntityCallback, "newEmployee");
   }
 
   async subscribeDelete(
     deletedEntity: EmployeeSubscribeCallback
   ): Promise<void> {
-    await this.subscribe(deleteEmployee, deletedEntity);
+    await this.subscribe(removedEmployee, deletedEntity, "removedEmployee");
   }
 
   async subscribeUpdate(
     updatedEntity: EmployeeSubscribeCallback
   ): Promise<void> {
-    await this.subscribe(updateEmployee, updatedEntity);
+    await this.subscribe(updatedEmployee, updatedEntity, "updatedEmployee");
   }
+
   private async subscribe(
     query: string,
-    subscribeCallback: EmployeeSubscribeCallback
+    subscribeCallback: EmployeeSubscribeCallback,
+    dataField: string
   ) {
     await this.client.hydrated();
     const observer = this.client.subscribe({
@@ -76,12 +81,15 @@ export default class EmployeeService
     });
     observer.subscribe({
       next(value) {
-        debugger;
         const employee = new EmployeeDeserializer().deserialize(
-          value as IEmployeeEntity
+          value.data[dataField]
         );
         subscribeCallback(employee);
-      }
+      },
+      complete(): void {
+        console.log("completed subscribe");
+      },
+      error: console.error
     });
   }
 }

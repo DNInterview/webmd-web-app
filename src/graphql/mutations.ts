@@ -66,6 +66,16 @@ export const updateEmployee = `mutation UpdateEmployee(
 }
 `;
 export const deleteEmployee = `mutation DeleteEmployee($id: ID!) {
-  deleteEmployee(id: $id)
+  deleteEmployee(id: $id) {
+    id
+    firstName
+    lastName
+    phoneNumber
+    city
+    state
+    country
+    hireDate
+    employmentEndDate
+  }
 }
 `;

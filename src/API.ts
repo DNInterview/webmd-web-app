@@ -58,7 +58,18 @@ export type DeleteEmployeeMutationVariables = {
 };
 
 export type DeleteEmployeeMutation = {
-  deleteEmployee: boolean | null;
+  deleteEmployee: {
+    __typename: "Employee";
+    id: string;
+    firstName: string | null;
+    lastName: string | null;
+    phoneNumber: string | null;
+    city: string | null;
+    state: string | null;
+    country: string | null;
+    hireDate: string | null;
+    employmentEndDate: string | null;
+  } | null;
 };
 
 export type GetEmployeeQueryVariables = {
@@ -126,5 +137,16 @@ export type UpdatedEmployeeSubscription = {
 };
 
 export type RemovedEmployeeSubscription = {
-  removedEmployee: boolean | null;
+  removedEmployee: {
+    __typename: "Employee";
+    id: string;
+    firstName: string | null;
+    lastName: string | null;
+    phoneNumber: string | null;
+    city: string | null;
+    state: string | null;
+    country: string | null;
+    hireDate: string | null;
+    employmentEndDate: string | null;
+  } | null;
 };

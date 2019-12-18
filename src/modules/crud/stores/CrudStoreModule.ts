@@ -38,12 +38,11 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
       ) {
         service.update(payload.id, payload);
       },
-      [CRUD_ACTION_DELETE_ENTITY](
+      async [CRUD_ACTION_DELETE_ENTITY](
         store: Store<ICrudStoreState<Entity>>,
         payload: Entity
       ) {
-        debugger;
-        service.delete(payload.id);
+        await service.delete(payload.id);
       },
       [CRUD_ACTION_SUBSCRIBE_NEW_ENTITY](
         store: Store<ICrudStoreState<Entity>>
@@ -56,7 +55,6 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
         store: Store<ICrudStoreState<Entity>>
       ) {
         service.subscribeDelete(entity => {
-          debugger;
           store.commit(CRUD_MUTATION_DELETED_ENTITY, entity);
         });
       },
@@ -64,7 +62,6 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
         store: Store<ICrudStoreState<Entity>>
       ) {
         service.subscribeUpdate(entity => {
-          debugger;
           store.commit(CRUD_MUTATION_UPDATED_ENTITY, entity);
         });
       }
@@ -88,12 +85,15 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
       payload: Entity
     ) {
       debugger;
-      let foundIndex: number = 0;
-      const entity = state.entityList.find((entInList, index) => {
-        foundIndex = index;
-        return entInList.id === payload.id;
-      });
-      if (entity && foundIndex) {
+      let foundIndex: number = -1;
+      for (let i = 0; i <= state.entityList.length; i++) {
+        const entity = state.entityList[i];
+        if (entity.id === payload.id) {
+          foundIndex = i;
+          break;
+        }
+      }
+      if (foundIndex) {
         state.entityList.splice(foundIndex, 1);
       }
     },
@@ -101,6 +101,7 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
       state: ICrudStoreState<Entity>,
       payload: Entity
     ) {
+      debugger;
       let foundIndex: number = 0;
       const entity = state.entityList.find((entInList, index) => {
         foundIndex = index;

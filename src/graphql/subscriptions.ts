@@ -30,6 +30,16 @@ export const updatedEmployee = `subscription UpdatedEmployee {
 }
 `;
 export const removedEmployee = `subscription RemovedEmployee {
-  removedEmployee
+  removedEmployee {
+    id
+    firstName
+    lastName
+    phoneNumber
+    city
+    state
+    country
+    hireDate
+    employmentEndDate
+  }
 }
 `;

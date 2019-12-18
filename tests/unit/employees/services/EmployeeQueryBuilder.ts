@@ -27,8 +27,8 @@ export default class EmployeeQueryBuilder {
 }
       `;
   }
-  delete(id: string) {
-    `mutation DeleteEmployee {
+  delete(id: string): string {
+    return `mutation DeleteEmployee {
   deleteEmployee(
       id: "${id}"
   ) {
@@ -45,8 +45,8 @@ export default class EmployeeQueryBuilder {
 }
 `;
   }
-  update(id: string) {
-    `mutation Update {
+  update(id: string): string {
+    return `mutation Update {
   updateEmployee(
       id: "${id}"
   ) {

@@ -5,8 +5,6 @@ import Employee from "@/modules/employees/models/Employee/Employee";
 import { AllEmployeesQuery } from "@/API";
 import gql from "graphql-tag";
 import { allEmployees } from "@/graphql/queries";
-import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
-import { createEmployee } from "@/graphql/mutations";
 import EmployeeQueryBuilder from "./EmployeeQueryBuilder";
 
 describe("EmployeeService", () => {

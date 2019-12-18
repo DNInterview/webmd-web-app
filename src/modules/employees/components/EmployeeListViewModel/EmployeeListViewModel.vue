@@ -9,17 +9,13 @@
         </tr>
       </thead>
       <tbody class="employee-view__list-body">
-        <tr
-          v-for="(row, key) in entityList"
-          v-bind:key="key"
-          v-bind="selectedRow"
-        >
+        <tr v-for="(row, key) in entityList" v-bind:key="key">
           <td v-for="(col, key) in entityColumns" v-bind:key="key">
             {{ row[col] }}
           </td>
           <td><button>+</button></td>
           <td>
-            <button @click="deleteEntity" :v-model="(selectedRow = key)">
+            <button @click="deleteEntity(row)">
               x
             </button>
           </td>
@@ -43,14 +39,8 @@ Vue.use(Vuex);
 export default class EmployeeListViewModel extends CrudTableViewModel<
   IEmployeeEntity
 > {
-  selectedRow = 0;
-  deleteEntity() {
-    if (this.selectedRow) {
-      this.$store.dispatch(
-        CRUD_ACTION_DELETE_ENTITY,
-        this.entityList[this.selectedRow!]
-      );
-    }
+  deleteEntity(entity: IEmployeeEntity) {
+    this.$store.dispatch(CRUD_ACTION_DELETE_ENTITY, entity);
   }
 }
 </script>
