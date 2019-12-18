@@ -82,11 +82,11 @@ AWS AppSync provides a graphQL API built on top of DynamoDB and combines the gra
 
 ### Alternatives
 #### [SNS/SQS](docs/images/AwsSqsSns.png)
-SNS is a publish subscriber service and SQS is a message queue services and together they provide a mechanism of reliable asynchronous communication in a distributed system of microservices. SNS supports push notifications to mobile devices as well as websocket for publishing to browsers as well. However after further investigation, the websocket mechanism seems to only support 1 to 1 publishes. This would likely mean there would need to be some kind of transaction for every published message, which cause problems at scale.
+SNS is a publish subscriber service and SQS is a message queue services and together they provide a mechanism of reliable asynchronous communication in a distributed system of microservices. SNS supports push notifications to mobile devices as well as websocket for publishing to browsers as well. However after further investigation, the websocket mechanism seems to only support 1 to 1 publishes. This would likely mean there would need to be some kind of transaction for every published message, which could cause problems at scale.
 
 I decided against using REST because it is inherently synchronous and does not provide any mechanism for real time updates, which limits it as a solution for backend communication.
 
-However, all of these solutions solve specific problems and can be used in parallel.   
+However, all of these solutions solve specific problems and I am not opposed to using them in parallel.   
 
 ### Employees project
 Using the AWS AppSync graphQL API, I developed an MVVM Vue app that uses the graphQL subscriptions to any updates to the databaase. 
