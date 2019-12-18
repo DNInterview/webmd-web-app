@@ -24,7 +24,7 @@
               <div class="modal-footer">
                 <slot name="footer">
                   <button class="modal-default-button" @click="submitForm">
-                    Submit
+                    {{ typeDescription }}
                   </button>
                   <button class="modal-default-button" @click="closeForm">
                     Cancel
@@ -45,11 +45,21 @@ import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity
 import CrudFormViewModel from "@/modules/crud/view-models/form/CrudFormViewModel";
 import { CRUD_ACTION_CREATE_ENTITY } from "@/modules/crud/stores/CrudStoreModule.constants";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import { Prop } from "vue-property-decorator";
+import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 @Component({})
 export default class EmployeeFormViewModel extends CrudFormViewModel<
   IEmployeeEntity
 > {
+  get type(): EmployeeFormViewModelType {
+    return this.$store.state.formType;
+  }
+
+  get typeDescription(): string {
+    return this.type === EmployeeFormViewModelType.Create ? "Create" : "Update";
+  }
+
   closeForm(): void {
     this.crudState.shouldShowForm = false;
   }
