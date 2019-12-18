@@ -11,7 +11,7 @@ import { Component } from "vue-property-decorator";
 import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-import EntityList from "@/modules/employees/components/EmployeeListViewModel.vue";
+import EntityList from "@/modules/employees/components/EmployeeListViewModel/EmployeeListViewModel.vue";
 import EntityForm from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModel.vue";
 
 @Component({

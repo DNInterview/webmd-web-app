@@ -18,9 +18,18 @@
 </template>
 
 <script lang="ts">
-export default {
-  props: ["entityColumns", "entityList"]
-};
+import Component from "vue-class-component";
+import IDatabaseEntity from "@/modules/core/models/interfaces/IDatabaseEntity";
+import IEmployeeListViewModel from "@/modules/employees/components/EmployeeListViewModel/IEmployeeListViewModel";
+import { Vue, Prop } from "vue-property-decorator";
+
+@Component({})
+export default class EmployeeListViewModel<T extends IDatabaseEntity>
+  extends Vue
+  implements IEmployeeListViewModel<T> {
+  @Prop() entityColumns: string[] = [];
+  @Prop() entityList: T[] = [];
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
