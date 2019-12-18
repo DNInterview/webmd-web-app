@@ -3,7 +3,7 @@
     <button
       class="entity-view__create-button"
       @click="showForm"
-      v-if="!showForm"
+      v-if="!shouldShowForm"
     >
       Create
     </button>
@@ -42,13 +42,11 @@
 <script lang="ts">
 import Component from "vue-class-component";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-import CrudViewModel from "@/modules/crud/components/CrudViewModel";
+import CrudFormViewModel from "@/modules/crud/view-models/form/CrudFormViewModel";
 
 @Component({})
-export default class EmployeeViewModel extends CrudViewModel<
-  IEmployeeEntity,
-  EmployeeStoreState
+export default class EmployeeFormViewModel extends CrudFormViewModel<
+  IEmployeeEntity
 > {}
 </script>
 

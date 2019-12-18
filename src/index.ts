@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { Store } from "vuex";
 import EmployeeStoreModule from "@/modules/employees/store/EmployeeStoreModule";
 import AWS from "aws-sdk";
 import AWSService from "@/modules/core/services/cloud/AWSService/AWSService";
@@ -22,7 +22,7 @@ const employeeState = new EmployeeStoreState(
   false
 );
 const employeeStore = new EmployeeStoreModule(employeeService);
-export default new Vuex.Store({
+export default new Store({
   state: employeeState,
   mutations: employeeStore.mutations,
   actions: employeeStore.actions,

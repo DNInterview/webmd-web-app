@@ -1,8 +1,8 @@
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
+import ICrudTableViewModel from "@/modules/crud/view-models/table-view/ICrudTableViewModel";
 
 export default interface IEmployeeViewModel
-  extends ICrudViewModel<IEmployeeEntity> {
+  extends ICrudTableViewModel<IEmployeeEntity> {
   entityList: IEmployeeEntity[];
   readonly entityColumns: string[];
 }

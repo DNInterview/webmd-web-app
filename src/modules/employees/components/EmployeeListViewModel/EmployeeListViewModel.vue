@@ -19,14 +19,16 @@
 
 <script lang="ts">
 import Component from "vue-class-component";
-import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
-import CrudViewModel from "@/modules/crud/components/CrudViewModel";
+import CrudTableViewModel from "@/modules/crud/view-models/table-view/CrudTableViewModel";
+import { Vue } from "vue-property-decorator";
+import Vuex from "vuex";
+
+Vue.use(Vuex);
 
 @Component({})
-export default class EmployeeViewModel extends CrudViewModel<
-  IEmployeeEntity,
-  EmployeeStoreState
+export default class EmployeeListViewModel extends CrudTableViewModel<
+  IEmployeeEntity
 > {}
 </script>
 

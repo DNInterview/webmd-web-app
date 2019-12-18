@@ -5,7 +5,7 @@ import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
 export default class EmployeeStoreState
   implements ICrudStoreState<IEmployeeEntity> {
   constructor(
-    readonly entityList: IEmployeeEntity[],
+    public entityList: IEmployeeEntity[],
     public createFormModel: ICreateEntityOptions<IEmployeeEntity>,
     public shouldShowForm: boolean
   ) {}

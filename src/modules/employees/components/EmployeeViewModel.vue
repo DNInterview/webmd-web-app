@@ -1,18 +1,19 @@
 <template>
   <div class="entity-view">
     <h1>Employees</h1>
-    <entity-form :form-model="formModel"> </entity-form>
-    <entity-list :entity-columns="entityColumns" :entity-list="entityList" />
+    <entity-form />
+    <entity-list />
   </div>
 </template>
 
 <script lang="ts">
 import { Component } from "vue-property-decorator";
-import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import EntityList from "@/modules/employees/components/EmployeeListViewModel/EmployeeListViewModel.vue";
 import EntityForm from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModel.vue";
+import CrudViewModel from "@/modules/crud/view-models/CrudViewModel";
+import { Store } from "vuex";
 
 @Component({
   components: {
@@ -20,10 +21,7 @@ import EntityForm from "@/modules/employees/components/EmployeeForm/EmployeeForm
     EntityForm
   }
 })
-export default class EmployeeViewModel extends CrudViewModel<
-  IEmployeeEntity,
-  EmployeeStoreState
-> {
+export default class EmployeeViewModel extends CrudViewModel<IEmployeeEntity> {
   public mounted() {
     super.mounted();
   }
