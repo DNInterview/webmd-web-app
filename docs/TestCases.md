@@ -1,3 +1,21 @@
+## User Update
+ - Defect. Employee does not get updated. 
+#### GIVEN
+User1 and User2 are on separate computers and navigate to http://webmd-web-app-20191216181919-hostingbucket-develop.s3-website-us-east-1.amazonaws.com/
+#### WHEN
+User1 clicks the update button on the first employee
+#### THEN
+User1 the update form filled out with the users information
+
+#### WHEN
+User1 changes the first and last name of the first employee
+
+#### THEN
+User1 sees the employee updated in the employees list
+
+User2 sees the employee updated in the employees list
+
+
 ## Employees List
 #### WHEN
 User navigates to http://webmd-web-app-20191216181919-hostingbucket-develop.s3-website-us-east-1.amazonaws.com/
@@ -31,20 +49,3 @@ User1 clicks the delete button on the first employee
 User1 sees the employee removed from the employees list
 
 User2 sees the employee removed from the employees list
-
-## User Update
- - Defect. Employee does not get updated. 
-#### GIVEN
-User1 and User2 are on separate computers and navigate to http://webmd-web-app-20191216181919-hostingbucket-develop.s3-website-us-east-1.amazonaws.com/
-#### WHEN
-User1 clicks the update button on the first employee
-#### THEN
-User1 the update form filled out with the users information
-
-#### WHEN
-User1 changes the first and last name of the first employee
-
-#### THEN
-User1 sees the employee updated in the employees list
-
-User2 sees the employee updated in the employees list
