@@ -1,4 +1,5 @@
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
+import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 
 export default class EmployeeQueryBuilder {
   create(options: CreateEmployeeOptions): string {
@@ -45,10 +46,17 @@ export default class EmployeeQueryBuilder {
 }
 `;
   }
-  update(id: string): string {
+  update(options: IEmployeeEntity): string {
     return `mutation Update {
   updateEmployee(
-      id: "${id}"
+        firstName: "${options.firstName || " "}",
+        lastName: "${options.lastName || " "}",
+        phoneNumber: "${options.phoneNumber || " "}",
+        city: "${options.city || " "}",
+        state: "${options.state || " "}",
+        country: "${options.country || " "}",
+        hireDate: "${options.hireDate || " "}",
+        employmentEndDate: "${options.employmentEndDate || " "}"
   ) {
         id
         firstName

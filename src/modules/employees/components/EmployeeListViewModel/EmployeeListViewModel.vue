@@ -33,6 +33,7 @@ import { Vue } from "vue-property-decorator";
 import Vuex from "vuex";
 import { CRUD_ACTION_DELETE_ENTITY } from "@/modules/crud/stores/CrudStoreModule.constants";
 import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
+import EmployeeDeserializer from "@/modules/employees/models/Employee/EmployeeDeserializer";
 
 Vue.use(Vuex);
 
@@ -44,11 +45,11 @@ export default class EmployeeListViewModel extends CrudTableViewModel<
     this.$store.dispatch(CRUD_ACTION_DELETE_ENTITY, entity);
   }
   openUpdateForm(entity: IEmployeeEntity): void {
-    const formModel = Object.assign({}, entity);
     this.$store.state.shouldShowForm = true;
     this.$store.state.formType = EmployeeFormViewModelType.Update;
-    debugger;
-    this.$store.state.formModel = formModel;
+    this.$store.state.formModel = new EmployeeDeserializer().deserialize(
+      entity
+    );
   }
 }
 </script>

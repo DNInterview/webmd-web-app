@@ -48,6 +48,7 @@ import {
   CRUD_ACTION_UPDATE_ENTITY
 } from "@/modules/crud/stores/CrudStoreModule.constants";
 import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
+import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 
 @Component({})
 export default class EmployeeFormViewModel extends CrudFormViewModel<
@@ -63,6 +64,7 @@ export default class EmployeeFormViewModel extends CrudFormViewModel<
 
   closeForm(): void {
     this.$store.state.shouldShowForm = false;
+    this.$store.state.formModal = new CreateEmployeeOptions();
   }
 
   showForm(): void {

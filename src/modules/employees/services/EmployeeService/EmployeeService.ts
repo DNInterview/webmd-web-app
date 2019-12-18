@@ -41,6 +41,7 @@ export default class EmployeeService
     return new AllEmployeesDeserializer().deserialize(result.data);
   }
   update(id: string, options: UpdateEmployeeOptions): Promise<IEmployeeEntity> {
+    debugger;
     return this.client.mutate({
       mutation: gql(this.queryBuilder.update(id))
     });
@@ -76,7 +77,6 @@ export default class EmployeeService
     subscribeCallback: EmployeeSubscribeCallback,
     dataField: string
   ) {
-    debugger;
     await this.client.hydrated();
     const observer = this.client.subscribe({
       query: gql(query)
