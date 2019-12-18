@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import EmployeeViewModel from "./modules/employees/components/EmployeeView.vue";
+import EmployeeViewModel from "./modules/employees/components/EmployeeViewModel.vue";
 
 @Component({
   components: {

@@ -1,8 +1,8 @@
 <template>
   <div class="entity-view">
     <h1>Employees</h1>
-    <employee-form :form-model="formModel"> </employee-form>
-    <employee-list :entity-columns="entityColumns" :entity-list="entityList" />
+    <entity-form :form-model="formModel"> </entity-form>
+    <entity-list :entity-columns="entityColumns" :entity-list="entityList" />
   </div>
 </template>
 
@@ -11,13 +11,13 @@ import { Component } from "vue-property-decorator";
 import CrudViewModel from "@/modules/crud/components/CrudViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
-import EmployeeList from "@/modules/employees/components/EmployeeList.vue";
-import EmployeeForm from "@/modules/employees/components/EmployeeForm/EmployeeForm.vue";
+import EntityList from "@/modules/employees/components/EmployeeListViewModel.vue";
+import EntityForm from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModel.vue";
 
 @Component({
   components: {
-    EmployeeList,
-    EmployeeForm
+    EntityList,
+    EntityForm
   }
 })
 export default class EmployeeViewModel extends CrudViewModel<

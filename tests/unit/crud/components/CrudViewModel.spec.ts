@@ -1,5 +1,5 @@
 import Employee from "@/modules/employees/models/Employee/Employee";
-import IEmployeeView from "@/modules/employees/components/IEmployeeView";
+import IEmployeeViewModel from "@/modules/employees/components/IEmployeeViewModel";
 import { CRUD_ACTION_GET_LIST } from "@/modules/crud/stores/CrudStoreModule.constants";
 import ICrudViewModel from "@/modules/crud/components/ICrudViewModel";
 import { Store } from "vuex";
@@ -67,7 +67,7 @@ describe("CrudViewModel", () => {
           "employmentEndDate"
         ];
         // Act
-        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeView)
+        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeViewModel)
           .entityColumns;
 
         // Assert
@@ -85,7 +85,7 @@ describe("CrudViewModel", () => {
         } as Store<EmployeeStoreState>;
         const expectedColumns: string[] = [];
         // Act
-        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeView)
+        const actualColumns = ((testCrudViewModel as unknown) as IEmployeeViewModel)
           .entityColumns;
 
         // Assert
