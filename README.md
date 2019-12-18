@@ -51,7 +51,8 @@ npm run deploy:minor
 ```
 npm run deploy:major
 ```
+
+
 Monitor CI builds [here](https://circleci.com/gh/DNInterview/webmd-web-app)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Kanban board [here](https://kanbanflow.com/board/q3cRbV)
