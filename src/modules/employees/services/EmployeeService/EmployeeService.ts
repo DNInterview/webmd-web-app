@@ -40,10 +40,9 @@ export default class EmployeeService
     });
     return new AllEmployeesDeserializer().deserialize(result.data);
   }
-  update(id: string, options: UpdateEmployeeOptions): Promise<IEmployeeEntity> {
-    debugger;
+  update(id: string, options: IEmployeeEntity): Promise<IEmployeeEntity> {
     return this.client.mutate({
-      mutation: gql(this.queryBuilder.update(id))
+      mutation: gql(this.queryBuilder.update(options))
     });
   }
   delete(id: string): Promise<boolean> {
@@ -68,7 +67,6 @@ export default class EmployeeService
   async subscribeUpdate(
     updatedEntity: EmployeeSubscribeCallback
   ): Promise<void> {
-    debugger;
     await this.subscribe(updatedEmployee, updatedEntity, "updatedEmployee");
   }
 

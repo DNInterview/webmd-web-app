@@ -34,6 +34,7 @@ export const createEmployee = `mutation CreateEmployee(
 }
 `;
 export const updateEmployee = `mutation UpdateEmployee(
+  $ID: String
   $firstName: String
   $lastName: String
   $phoneNumber: String
@@ -44,6 +45,7 @@ export const updateEmployee = `mutation UpdateEmployee(
   $employmentEndDate: String
 ) {
   updateEmployee(
+    ID: $ID
     firstName: $firstName
     lastName: $lastName
     phoneNumber: $phoneNumber

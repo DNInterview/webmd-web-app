@@ -6,6 +6,8 @@ import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity
 import CrudTableViewModel from "@/modules/crud/view-models/table-view/CrudTableViewModel";
 import { ICrudStoreState } from "@/modules/crud/stores/ICrudStoreState";
 import ICreateEntityOptions from "@/modules/crud/options/ICreateEntityOptions";
+import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
+import Any = jasmine.Any;
 
 describe("CrudTableViewModel", () => {
   let testCrudViewModel: CrudTableViewModel<IEmployeeEntity>;
@@ -13,6 +15,8 @@ describe("CrudTableViewModel", () => {
     const employeeStoreState = new EmployeeStoreState(
       [],
       {} as ICreateEntityOptions<IEmployeeEntity>,
+      false,
+      EmployeeFormViewModelType.Create,
       false
     );
     class TestCrudTableViewModel extends CrudTableViewModel<IEmployeeEntity> {
@@ -24,10 +28,11 @@ describe("CrudTableViewModel", () => {
     testCrudViewModel = new TestCrudTableViewModel();
   });
   describe("entityColumns", () => {
-    describe("list contains elements ", () => {
-      it("return a list of the fields", () => {
+    describe("entity list contains elements ", () => {
+      it("return a entity list of the fields", () => {
         // Arrange
-        testCrudViewModel.crudState.entityList = [
+        testCrudViewModel.$store = { state: {} } as Store<Any>;
+        testCrudViewModel.$store.state.entityList = [
           new Employee(
             "some id",
             null,
@@ -58,7 +63,7 @@ describe("CrudTableViewModel", () => {
         expect(actualColumns).toEqual(expectedColumns);
       });
     });
-    describe("list has no elements", () => {
+    describe("entity list has no elements", () => {
       it("returns empty array", () => {
         // Arrange
         const list: IEmployeeEntity[] = [];
@@ -81,7 +86,8 @@ describe("CrudTableViewModel", () => {
     it("returns the state entity list", () => {
       // Arrange
       const expectedList: IEmployeeEntity[] = [];
-      testCrudViewModel.crudState.entityList = expectedList;
+      testCrudViewModel.$store = { state: {} } as Store<any>;
+      testCrudViewModel.$store.state.entityList = expectedList;
 
       // Act
       const actualList = testCrudViewModel.entityList;

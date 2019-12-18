@@ -17,7 +17,7 @@ describe("CrudStoreModule", () => {
   let mockService: EmployeeService;
   let stubState: EmployeeStoreState;
   let crudStoreModule: EmployeeStoreModule;
-  let vuexStore: Store<EmployeeStoreState>;
+  let vuexStore: Store<any>;
   beforeEach(() => {
     stubState = {} as EmployeeStoreState;
     mockService = {} as EmployeeService;

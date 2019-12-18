@@ -28,6 +28,7 @@ export type CreateEmployeeMutation = {
 };
 
 export type UpdateEmployeeMutationVariables = {
+  ID?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   phoneNumber?: string | null;

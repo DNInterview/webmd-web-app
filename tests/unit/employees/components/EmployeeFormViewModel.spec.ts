@@ -3,6 +3,7 @@ import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/
 import CrudFormViewModel from "@/modules/crud/view-models/form/CrudFormViewModel";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import { Store } from "vuex";
+import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 describe("EmployeeFormViewModel", () => {
   let employeeFormViewModel: EmployeeFormViewModel;
@@ -19,6 +20,8 @@ describe("EmployeeFormViewModel", () => {
     it("creates entityOptions and creates entity", () => {
       // Arrange
       const expectedOptions = new CreateEmployeeOptions();
+      iEmployeeFormViewModel.$store.state.formType =
+        EmployeeFormViewModelType.Create;
       iEmployeeFormViewModel.$store.state.formModel = expectedOptions;
       iEmployeeFormViewModel.$store.dispatch = jest
         .fn()
