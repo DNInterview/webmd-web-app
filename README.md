@@ -91,7 +91,7 @@ However, all of these solutions solve specific problems and can be used in paral
 ### Employees project
 Using the AWS AppSync graphQL API, I developed an MVVM Vue app that uses the graphQL subscriptions to any updates to the databaase. 
 
-I wanted to find the right microservices solution and spent the bulk of my time researching. Normally I would have full unit test coverage, functional CI/CD, the U in CRUD, and other standards, such as error handling and activity indicators. You can view my progress and priorities [here](https://kanbanflow.com/board/q3cRbV)  
+I wanted to find the right microservices solution and spent the bulk of my time researching. Normally I would have full unit test coverage, functional CI/CD, the U in CRUD, and other UX/UI standards, such as error handling and activity indicators. You can view my progress and priorities [here](https://kanbanflow.com/board/q3cRbV)  
 
 
     
