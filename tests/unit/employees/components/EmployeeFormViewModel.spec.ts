@@ -19,7 +19,7 @@ describe("EmployeeFormViewModel", () => {
     it("creates entityOptions and creates entity", () => {
       // Arrange
       const expectedOptions = new CreateEmployeeOptions();
-      iEmployeeFormViewModel.$store.state.createFormModel = expectedOptions;
+      iEmployeeFormViewModel.$store.state.formModel = expectedOptions;
       iEmployeeFormViewModel.$store.dispatch = jest
         .fn()
         .mockReturnValueOnce(new Promise(resolve => resolve()));
@@ -38,7 +38,7 @@ describe("EmployeeFormViewModel", () => {
     it("returns the createOptionsState", () => {
       // Arrange
       const expectedFormModel = new CreateEmployeeOptions();
-      iEmployeeFormViewModel.crudState.createFormModel = expectedFormModel;
+      iEmployeeFormViewModel.crudState.formModel = expectedFormModel;
 
       // Act
       const actualFormModel = iEmployeeFormViewModel.formModel;

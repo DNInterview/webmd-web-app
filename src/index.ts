@@ -7,6 +7,7 @@ import EmployeeService from "@/modules/employees/services/EmployeeService/Employ
 import EmployeeStoreState from "@/modules/employees/store/EmployeeStoreState";
 import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
 import EmployeeQueryBuilder from "../tests/unit/employees/services/EmployeeQueryBuilder";
+import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 Vue.use(Vuex);
 
@@ -19,10 +20,12 @@ const employeeService = new EmployeeService(
   awsService.appSyncClient,
   new EmployeeQueryBuilder()
 );
-const employeeCreateFormModel = new CreateEmployeeOptions();
+const employeeformModel = new CreateEmployeeOptions();
 const employeeState = new EmployeeStoreState(
   [],
-  employeeCreateFormModel,
+  employeeformModel,
+  false,
+  EmployeeFormViewModelType.Create,
   false
 );
 const employeeStore = new EmployeeStoreModule(employeeService);

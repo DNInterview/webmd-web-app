@@ -67,6 +67,7 @@ export default class EmployeeService
   async subscribeUpdate(
     updatedEntity: EmployeeSubscribeCallback
   ): Promise<void> {
+    debugger;
     await this.subscribe(updatedEmployee, updatedEntity, "updatedEmployee");
   }
 
@@ -75,6 +76,7 @@ export default class EmployeeService
     subscribeCallback: EmployeeSubscribeCallback,
     dataField: string
   ) {
+    debugger;
     await this.client.hydrated();
     const observer = this.client.subscribe({
       query: gql(query)

@@ -6,7 +6,7 @@ export default abstract class CrudTableViewModel<Entity extends IDatabaseEntity>
   extends BaseCrudViewModel<Entity>
   implements ICrudTableViewModel<Entity> {
   get entityList(): Entity[] {
-    return this.crudState.entityList;
+    return this.$store.state.entityList;
   }
   public get entityColumns(): string[] {
     if (this.entityList) {

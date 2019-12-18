@@ -61,6 +61,7 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
       [CRUD_ACTION_SUBSCRIBE_UPDATED_ENTITY](
         store: Store<ICrudStoreState<Entity>>
       ) {
+        debugger;
         service.subscribeUpdate(entity => {
           store.commit(CRUD_MUTATION_UPDATED_ENTITY, entity);
         });
@@ -84,7 +85,6 @@ export default abstract class CrudStoreModule<Entity extends IDatabaseEntity> {
       state: ICrudStoreState<Entity>,
       payload: Entity
     ) {
-      debugger;
       let foundIndex: number = -1;
       for (let i = 0; i <= state.entityList.length; i++) {
         const entity = state.entityList[i];

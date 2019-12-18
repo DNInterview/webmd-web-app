@@ -43,9 +43,10 @@
 import Component from "vue-class-component";
 import IEmployeeEntity from "@/modules/employees/models/Employee/IEmployeeEntity";
 import CrudFormViewModel from "@/modules/crud/view-models/form/CrudFormViewModel";
-import { CRUD_ACTION_CREATE_ENTITY } from "@/modules/crud/stores/CrudStoreModule.constants";
-import CreateEmployeeOptions from "@/modules/employees/services/EmployeeService/CreateEmployeeOptions";
-import { Prop } from "vue-property-decorator";
+import {
+  CRUD_ACTION_CREATE_ENTITY,
+  CRUD_ACTION_UPDATE_ENTITY
+} from "@/modules/crud/stores/CrudStoreModule.constants";
 import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 @Component({})
@@ -61,15 +62,24 @@ export default class EmployeeFormViewModel extends CrudFormViewModel<
   }
 
   closeForm(): void {
-    this.crudState.shouldShowForm = false;
+    this.$store.state.shouldShowForm = false;
   }
 
   showForm(): void {
-    this.crudState.shouldShowForm = true;
+    this.$store.state.shouldShowForm = true;
   }
 
   submitForm(): void {
-    this.$store.dispatch(CRUD_ACTION_CREATE_ENTITY, this.formModel);
+    let action = "";
+    switch (this.$store.state.formType) {
+      case EmployeeFormViewModelType.Create:
+        action = CRUD_ACTION_CREATE_ENTITY;
+        break;
+      case EmployeeFormViewModelType.Update:
+        action = CRUD_ACTION_UPDATE_ENTITY;
+        break;
+    }
+    this.$store.dispatch(action, this.formModel);
   }
 }
 </script>

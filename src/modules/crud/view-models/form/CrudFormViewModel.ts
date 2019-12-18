@@ -7,11 +7,11 @@ export default abstract class CrudFormViewModel<Entity extends IDatabaseEntity>
   extends BaseCrudViewModel<Entity>
   implements ICrudFormViewModel<Entity> {
   get formModel(): IEntityOptions<Entity> {
-    return this.crudState.createFormModel;
+    return this.$store.state.formModel;
   }
 
   get shouldShowForm(): boolean {
-    return this.crudState.shouldShowForm;
+    return this.$store.state.shouldShowForm;
   }
 
   abstract submitForm(): void;

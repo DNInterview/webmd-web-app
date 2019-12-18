@@ -13,7 +13,7 @@
           <td v-for="(col, key) in entityColumns" v-bind:key="key">
             {{ row[col] }}
           </td>
-          <td><button>+</button></td>
+          <td><button @click="openUpdateForm(row)">+</button></td>
           <td>
             <button @click="deleteEntity(row)">
               x
@@ -32,6 +32,7 @@ import CrudTableViewModel from "@/modules/crud/view-models/table-view/CrudTableV
 import { Vue } from "vue-property-decorator";
 import Vuex from "vuex";
 import { CRUD_ACTION_DELETE_ENTITY } from "@/modules/crud/stores/CrudStoreModule.constants";
+import { EmployeeFormViewModelType } from "@/modules/employees/components/EmployeeForm/EmployeeFormViewModelType";
 
 Vue.use(Vuex);
 
@@ -41,6 +42,13 @@ export default class EmployeeListViewModel extends CrudTableViewModel<
 > {
   deleteEntity(entity: IEmployeeEntity) {
     this.$store.dispatch(CRUD_ACTION_DELETE_ENTITY, entity);
+  }
+  openUpdateForm(entity: IEmployeeEntity): void {
+    const formModel = Object.assign({}, entity);
+    this.$store.state.shouldShowForm = true;
+    this.$store.state.formType = EmployeeFormViewModelType.Update;
+    debugger;
+    this.$store.state.formModel = formModel;
   }
 }
 </script>
